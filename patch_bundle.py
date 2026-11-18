@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # Repoint the container's KOREA card from com.pubg.krmobile to com.pubg.imobile
 # by rewriting the Hermes string table entry with full offset fixup.
-# Handles both a pristine bundle and one already damaged by a naive byte replace.
 import os, struct, sys
 
 TARGET = b"com.pubg.krmobile"
@@ -36,48 +35,29 @@ def uleb(v):
             out.append(byte)
             return bytes(out)
 
-def score(b, s, entries):
-    ok = 0
-    for off, ln in entries:
+def decode_ok(b, S, sc, sss):
+    """True only if [S, S+sss) decodes as exactly sc uleb-prefixed strings."""
+    if S < 64 or S + sss > len(b):
+        return False
+    pos = S
+    end = S + sss
+    n = 0
+    while pos < end:
         try:
-            if s + off + 1 > len(b):
-                continue
-            if read_uleb(b, s + off) != ln:
-                continue
-            if ln and b[s + off + ln] not in (0, 1):
-                continue
-            ok += 1
+            L = read_uleb(b, pos)
         except Exception:
-            pass
-    return ok, len(entries)
-
-def locate(b, sc, oc):
-    """Return (P, S, T, E) for the first string that decodes to TARGET or REPL."""
-    for needle in (TARGET, REPL):
-        cand = b.find(needle)
-        while cand != -1:
-            for p in (1, 4, 0):
-                if p and b[cand - p:cand] != (uleb(len(needle)) if p == 1 else struct.pack("<I", len(needle))):
-                    continue
-                for e in range(64, len(b) - 8, 4):
-                    if u32(b, e + 4) != len(needle):
-                        continue
-                    off = u32(b, e)
-                    s = cand - off - p
-                    if s < 0 or s > cand:
-                        continue
-                    for pad in range(0, 9):
-                        t = s - oc * 16 - sc * 8 - pad
-                        if t < 64 or not (t <= e < t + sc * 8):
-                            continue
-                        stride = max(1, sc // 400)
-                        entries = [(u32(b, t + 8 * k), u32(b, t + 8 * k + 4))
-                                   for k in range(0, sc, stride)]
-                        ok, tot = score(b, s, entries)
-                        if tot and ok >= tot * 0.95:
-                            return cand, s, t, e, p
-            cand = b.find(needle, cand + 1)
-    return None
+            return False
+        pos += len(uleb(L))
+        if pos + L + 1 > end:
+            return False
+        pos += L
+        if b[pos] not in (0, 1):
+            return False
+        pos += 1
+        n += 1
+        if n > sc:
+            return False
+    return n == sc and pos == end
 
 def main():
     if len(sys.argv) < 2:
@@ -100,23 +80,69 @@ def main():
         print("PASS plain replace")
         return
 
-    print("hermes version:", u32(b, 8))
+    ver = u32(b, 8)
     sc = u32(b, 52)
     oc = u32(b, 56)
     sss = u32(b, 60)
+    print("hermes version:", ver)
     print("stringCount:", sc, "overflowCount:", oc, "storageSize:", sss)
-    if not (0 < sc < 2000000) or oc > 100000 or sss > len(b):
-        sys.exit("FAIL: header offsets do not look sane")
+    if not (0 < sc < 2000000) or oc > 100000 or not (0 < sss < len(b)):
+        sys.exit("FAIL: header fields not sane")
 
-    found = locate(b, sc, oc)
-    if not found:
-        sys.exit("FAIL: could not locate the string table entry")
-    P, S, T, E, p = found
+    cands = []
+    for needle in (TARGET, REPL):
+        c = b.find(needle)
+        while c != -1:
+            cands.append((c, needle))
+            c = b.find(needle, c + 1)
+    print("candidates:", len(cands))
+    if not cands:
+        sys.exit("FAIL: neither string present")
+
+    hit = None
+    for cand, needle in cands:
+        for p in (1, 4, 0):
+            pre = uleb(len(needle)) if p == 1 else (struct.pack("<I", len(needle)) if p == 4 else b"")
+            if pre and b[cand - p:cand] != pre:
+                continue
+            for e in range(64, len(b) - 8, 4):
+                if u32(b, e + 4) != len(needle):
+                    continue
+                off = u32(b, e)
+                S = cand - off - p
+                if not decode_ok(b, S, sc, sss):
+                    continue
+                hit = (cand, needle, p, S, e)
+                break
+            if hit:
+                break
+        if hit:
+            break
+
+    if not hit:
+        print("FAIL: no storage base validated")
+        for cand, needle in cands[:4]:
+            print("  @%d %r -> %s" % (cand, needle, bytes(b[cand - 8:cand + 26]).hex()))
+        sys.exit(1)
+
+    P, needle, p, S, _ = hit
     off = P - S - p
-    print("entry @%d off=%d prefix=%d storage=%d table=%d" % (E, off, p, S, T))
+    print("storage=%d prefix=%d offset=%d" % (S, p, off))
 
-    L = u32(b, E + 4)
+    E = None
+    for e in range(S - oc * 16 - sc * 8 - 16, S, 4):
+        if e >= 64 and u32(b, e) == off and u32(b, e + 4) == len(needle):
+            E = e
+            break
+    if E is None:
+        sys.exit("FAIL: entry with offset %d not found in table" % off)
+    T = S - oc * 16 - sc * 8
+    while T > 64 and (E - T) % 8:
+        T -= 1
+    print("entry=%d table=%d" % (E, T))
+
     lenbyte = uleb(len(REPL)) if p == 1 else (struct.pack("<I", len(REPL)) if p == 4 else b"")
+    L = u32(b, E + 4)
     print("entry length:", L)
 
     def fixup():
@@ -139,15 +165,13 @@ def main():
     if L == len(REPL) and b[P + len(REPL)] in (0, 1):
         print("state: already correct")
     elif L == len(TARGET) and b[P + len(REPL)] in (0, 1):
-        # naive replace already shrank the file; only the length byte and the
-        # offset table are stale. No bytes to delete.
-        print("state: naive replace, repairing table")
+        print("state: length stale, repairing")
         b[P - p:P] = lenbyte
         struct.pack_into("<I", b, E + 4, len(REPL))
         fixup()
     else:
         flag = b[P + len(TARGET)]
-        print("state: pristine, rewriting entry")
+        print("state: pristine, rewriting")
         b[P - p:P + len(TARGET) + 1] = lenbyte + REPL + bytes([flag])
         struct.pack_into("<I", b, E + 4, len(REPL))
         fixup()
@@ -156,16 +180,11 @@ def main():
         sys.exit("FAIL: target still present")
     q = b.find(REPL)
     if q == -1 or read_uleb(b, q - p) != len(REPL):
-        sys.exit("FAIL: replacement not readable")
+        sys.exit("FAIL: replacement unreadable")
     if u32(b, 32) != len(b):
         sys.exit("FAIL: fileLength mismatch")
-
-    stride = max(1, sc // 400)
-    entries = [(u32(b, T + 8 * k), u32(b, T + 8 * k + 4)) for k in range(0, sc, stride)]
-    ok, tot = score(b, S, entries)
-    print("post-check %d/%d entries valid" % (ok, tot))
-    if ok < tot * 0.95:
-        sys.exit("FAIL: table corrupted")
+    if not decode_ok(b, S, sc, sss):
+        sys.exit("FAIL: storage no longer decodes")
 
     open(path, "wb").write(bytes(b))
     print("PASS, new size:", len(b))
