@@ -85,14 +85,14 @@ I: Built apk into: shim-u.apk
 Archive:  shim.apk
   Length      Date    Time    Name
 ---------  ---------- -----   ----
-      716  2026-11-18 17:49   resources.arsc
-     1048  2026-11-18 17:49   classes.dex
-     1472  2026-11-18 17:49   AndroidManifest.xml
-      412  2026-11-18 17:49   META-INF/BGMI.SF
-     1103  2026-11-18 17:49   META-INF/BGMI.RSA
-      285  2026-11-18 17:49   META-INF/MANIFEST.MF
+      716  2026-11-18 17:57   resources.arsc
+     1048  2026-11-18 17:57   classes.dex
+     1456  2026-11-18 17:57   AndroidManifest.xml
+      412  2026-11-18 17:57   META-INF/BGMI.SF
+     1103  2026-11-18 17:57   META-INF/BGMI.RSA
+      285  2026-11-18 17:57   META-INF/MANIFEST.MF
 ---------                     -------
-     5036                     6 files
+     5020                     6 files
 Verifies
 Verified using v1 scheme (JAR signing): true
 Verified using v2 scheme (APK Signature Scheme v2): true
