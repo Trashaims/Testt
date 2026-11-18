@@ -1,6 +1,6 @@
 == build start ==
 Selecting previously unselected package android-liblog:amd64.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 213647 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 213946 files and directories currently installed.)
 Preparing to unpack .../0-android-liblog_1%3a34.0.5-12build1_amd64v3.deb ...
 Unpacking android-liblog:amd64 (1:34.0.5-12build1) ...
 Selecting previously unselected package android-libbase:amd64.
@@ -60,7 +60,7 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Archive:  /tmp/p35.zip
   inflating: /tmp/android.jar        
 total 26460
--rw-r--r-- 1 runner runner 27092450 Nov 18 06:29 1.apk
+-rw-r--r-- 1 runner runner 27092450 Nov 18 06:31 1.apk
 I: Using Apktool 2.10.0 with 4 thread(s).
 I: Checking whether sources has changed...
 I: Smaling smali folder into classes.dex...
@@ -71,10 +71,8 @@ I: Copying libs... (/kotlin)
 I: Building apk file...
 I: Copying unknown files/dir...
 I: Built apk into: unsigned.apk
-size: 1062064
+size: 1062063
 magic: c61fbc03c103191f
-plain js bundle, occurrences: 1
-PASS plain replace
-Generating 2,048 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 10,000 days
-	for: CN=bgmi
-[Storing keystore.jks]
+hermes version: 96
+stringCount: 6866 overflowCount: 9 storageSize: 100424
+FAIL: could not locate the string table entry
