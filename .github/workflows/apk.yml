@@ -1,0 +1,36 @@
+name: decode-apk
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  decode:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq unzip apktool file
+
+      - name: Decode
+        run: |
+          APK=$(find . -name '*.apk' -not -path './.git/*' | head -n1)
+          echo "target: $APK"
+          sha256sum "$APK" > apk-fingerprint.txt
+          file "$APK" >> apk-fingerprint.txt
+          unzip -o -q "$APK" -d apk-raw || true
+          apktool d -f -o decoded "$APK"
+          rm "$APK"
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "decode apk" || echo "nothing"
+          git push
