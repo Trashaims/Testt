@@ -60,8 +60,8 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Archive:  /tmp/p35.zip
   inflating: /tmp/android.jar        
 total 26460
--rw-r--r-- 1 runner runner 27092450 Nov 18 16:17 1.apk
--rw-r--r-- 1 runner runner 1062064 Nov 18 16:16 decoded/assets/index.android.bundle
+-rw-r--r-- 1 runner runner 27092450 Nov 18 16:19 1.apk
+-rw-r--r-- 1 runner runner 1062064 Nov 18 16:19 decoded/assets/index.android.bundle
 I: Using Apktool 2.10.0 with 4 thread(s).
 I: Checking whether sources has changed...
 I: Smaling smali folder into classes.dex...
@@ -75,17 +75,5 @@ I: Built apk into: unsigned.apk
 size: 1062064
 magic: c61fbc03c103191f
 stringCount: 6866 overflowCount: 9 storageSize: 100424
-table candidates: 5 [240636, 258780, 1055848, 1056768, 1058868]
-Traceback (most recent call last):
-  File "/home/runner/work/Testt/Testt/patch_bundle.py", line 167, in <module>
-    main()
-    ~~~~^^
-  File "/home/runner/work/Testt/Testt/patch_bundle.py", line 97, in main
-    good, tot = sample_ok(b, S, T, sc, sss, max(1, sc // 60))
-                ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Testt/Testt/patch_bundle.py", line 48, in sample_ok
-    off = u32(b, e)
-  File "/home/runner/work/Testt/Testt/patch_bundle.py", line 11, in u32
-    return struct.unpack_from("<I", b, o)[0]
-           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-struct.error: unpack_from requires a buffer of at least 1062236 bytes for unpacking 4 bytes at offset 1062232 (actual buffer size is 1062064)
+table candidates: 2 [240636, 258780]
+FAIL: no string entry matched by content
