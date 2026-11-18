@@ -17,6 +17,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -44,6 +45,11 @@ jobs:
           cp /tmp/android.jar /tmp/fw/1.apk
           ls -l /tmp/fw 2>&1 | tee -a build.log
           exit ${PIPESTATUS[0]}
+
+      - name: Restore pristine bundle
+        run: |
+          git checkout 12efa3bfd8b8a42d4dce517ac3242172dda52483 -- decoded/assets/index.android.bundle 2>&1 | tee -a build.log || echo "restore failed, using working copy" | tee -a build.log
+          ls -l decoded/assets/index.android.bundle 2>&1 | tee -a build.log
 
       - name: Build
         run: |
