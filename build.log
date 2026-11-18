@@ -1,288 +1,66 @@
-=== apktool ===
-2.7.0-dirty
-=== java ===
-openjdk version "25.0.5" 2026-10-20 LTS
-OpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)
-OpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)
-=== decoded ===
-total 96
-drwxr-xr-x   9 runner runner  4096 Nov 18 05:40 .
-drwxr-xr-x   7 runner runner  4096 Nov 18 05:41 ..
--rw-r--r--   1 runner runner 55811 Nov 18 05:40 AndroidManifest.xml
--rw-r--r--   1 runner runner   752 Nov 18 05:40 apktool.yml
-drwxr-xr-x   5 runner runner  4096 Nov 18 05:40 assets
-drwxr-xr-x   9 runner runner  4096 Nov 18 05:40 kotlin
-drwxr-xr-x   3 runner runner  4096 Nov 18 05:40 lib
-drwxr-xr-x   3 runner runner  4096 Nov 18 05:40 original
-drwxr-xr-x 140 runner runner  4096 Nov 18 05:40 res
-drwxr-xr-x   3 runner runner  4096 Nov 18 05:40 smali
-drwxr-xr-x   3 runner runner  4096 Nov 18 05:40 unknown
-=== decoded/res/values ===
-total 968
-drwxr-xr-x   2 runner runner   4096 Nov 18 05:40 .
-drwxr-xr-x 140 runner runner   4096 Nov 18 05:40 ..
--rw-r--r--   1 runner runner   4357 Nov 18 05:40 arrays.xml
--rw-r--r--   1 runner runner 101818 Nov 18 05:40 attrs.xml
--rw-r--r--   1 runner runner    119 Nov 18 05:40 bools.xml
--rw-r--r--   1 runner runner  14493 Nov 18 05:40 colors.xml
--rw-r--r--   1 runner runner  49257 Nov 18 05:40 dimens.xml
--rw-r--r--   1 runner runner    505 Nov 18 05:40 drawables.xml
--rw-r--r--   1 runner runner  19904 Nov 18 05:40 ids.xml
--rw-r--r--   1 runner runner   3899 Nov 18 05:40 integers.xml
--rw-r--r--   1 runner runner 365763 Nov 18 05:40 public.xml
--rw-r--r--   1 runner runner  14427 Nov 18 05:40 strings.xml
--rw-r--r--   1 runner runner 381693 Nov 18 05:40 styles.xml
-I: Using Apktool 2.7.0-dirty
-I: Checking whether sources has changed...
-I: Smaling smali folder into classes.dex...
-I: Checking whether resources has changed...
-I: Building resources...
-W: aapt: brut.common.BrutException: brut.common.BrutException: Could not extract resource: /prebuilt/linux/aapt_64 (defaulting to $PATH binary)
-W: res/drawable/$avd_hide_password__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$avd_hide_password__1.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$avd_hide_password__2.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$avd_show_password__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$avd_show_password__1.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$avd_show_password__2.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$bg_btn_premium_shape__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$m3_avd_hide_password__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$m3_avd_hide_password__1.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$m3_avd_hide_password__2.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$m3_avd_show_password__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$m3_avd_show_password__1.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$m3_avd_show_password__2.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_checked_unchecked__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_checked_unchecked__1.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_checked_unchecked__2.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_checked_indeterminate__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_checked_unchecked__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_checked_unchecked__1.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_checked_unchecked__2.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_indeterminate_checked__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_indeterminate_unchecked__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_indeterminate_unchecked__1.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_indeterminate_unchecked__2.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_unchecked_checked__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_unchecked_checked__1.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_unchecked_checked__2.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_unchecked_indeterminate__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_unchecked_indeterminate__1.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_icon_unchecked_indeterminate__2.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_unchecked_checked__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_unchecked_checked__1.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_checkbox_button_unchecked_checked__2.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_switch_thumb_checked_pressed__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_switch_thumb_checked_unchecked__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_switch_thumb_checked_unchecked__1.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_switch_thumb_pressed_checked__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_switch_thumb_pressed_unchecked__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_switch_thumb_unchecked_checked__0.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_switch_thumb_unchecked_checked__1.xml: Invalid file name: must contain only [a-z0-9_.]
-W: res/drawable/$mtrl_switch_thumb_unchecked_pressed__0.xml: Invalid file name: must contain only [a-z0-9_.]
-brut.androlib.AndrolibException: brut.common.BrutException: could not exec (exit code = 1): [aapt, p, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-version-vectors, -F, /tmp/APKTOOL14444648518082100492.tmp, -0, resources.arsc, -0, assets/index.android.bundle, -0, jpg, -0, assets/dexopt/baseline.prof, -0, assets/dexopt/baseline.profm, -0, png, -0, arsc, -I, /home/runner/.local/share/apktool/framework/1.apk, -S, /home/runner/work/Testt/Testt/decoded/res, -M, /home/runner/work/Testt/Testt/decoded/AndroidManifest.xml]
-2.12.1
-I: Using Apktool 2.12.1 on VENUS-HAX_2.2(Cracked) (1).apk with 4 threads
-I: Checking whether sources have changed...
-I: Smaling smali folder into classes.dex...
-I: Checking whether resources have changed...
-I: Building resources with aapt2...
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:3: error: resource android:color/bright_foreground_dark_disabled is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:53: error: resource android:color/btn_default_material_dark is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:54: error: resource android:color/btn_leanback_color is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:4: error: resource android:color/accent_device_default_700 not found.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:5: error: resource android:color/GM2_grey_800 is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:6: error: resource android:color/accent_device_default_50 not found.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:7: error: resource android:color/bright_foreground_dark_inverse is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:55: error: resource android:color/btn_default_material_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:56: error: resource android:color/btn_leanback_focused is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:8: error: resource android:color/background_floating_device_default_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:9: error: resource android:color/background_device_default_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:10: error: resource android:color/background_holo_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:11: error: resource android:color/background_floating_material_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:12: error: resource android:color/bright_foreground_disabled_holo_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:13: error: resource android:color/btn_colored_borderless_text_material is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:14: error: resource android:color/bright_foreground_dark is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:15: error: resource android:color/background_material_dark is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:16: error: resource android:color/btn_colored_text_material is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:17: error: resource android:color/car_blue_700 is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:18: error: resource android:color/background_floating_device_default_dark is private.
-Exception in thread "main" brut.androlib.exceptions.AndrolibException: brut.common.BrutException: could not exec (exit code = 1): [/tmp/brut_util_Jar_417400268131488323489854684351740768.tmp, link, -o, /tmp/APKTOOL816483633670200963.tmp, --package-id, 127, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-auto-version, --no-version-vectors, --no-version-transitions, --no-resource-deduping, --no-compile-sdk-metadata, --warn-manifest-validation, -I, /home/runner/.local/share/apktool/framework/1.apk, --manifest, /home/runner/work/Testt/Testt/decoded/AndroidManifest.xml, /home/runner/work/Testt/Testt/decoded/build/resources.zip]
-	at brut.androlib.AaptInvoker.invoke(SourceFile:212)
-	at brut.androlib.ApkBuilder.buildResources(SourceFile:328)
-	at brut.apktool.Main.main(SourceFile:96)
-Caused by: brut.common.BrutException: could not exec (exit code = 1): [/tmp/brut_util_Jar_417400268131488323489854684351740768.tmp, link, -o, /tmp/APKTOOL816483633670200963.tmp, --package-id, 127, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-auto-version, --no-version-vectors, --no-version-transitions, --no-resource-deduping, --no-compile-sdk-metadata, --warn-manifest-validation, -I, /home/runner/.local/share/apktool/framework/1.apk, --manifest, /home/runner/work/Testt/Testt/decoded/AndroidManifest.xml, /home/runner/work/Testt/Testt/decoded/build/resources.zip]
-	at brut.util.OS.exec(SourceFile:148)
-	at brut.androlib.AaptInvoker.invoke(SourceFile:208)
-	... 2 more
-3.0.3
-Exception in thread "main" java.lang.NumberFormatException: For input string: "'22'"
-	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
-	at java.base/java.lang.Integer.parseInt(Integer.java:565)
-	at java.base/java.lang.Integer.parseInt(Integer.java:662)
-	at brut.androlib.meta.VersionInfo.readItem(SourceFile:102)
-	at brut.yaml.YamlReader.readObject(SourceFile:144)
-	at brut.yaml.YamlReader.readObject(SourceFile:159)
-	at brut.androlib.meta.ApkInfo.readItem(SourceFile:127)
-	at brut.androlib.meta.ApkInfo.load(SourceFile:119)
-	at brut.androlib.meta.ApkInfo.load(SourceFile:75)
-	at brut.apktool.Main.main(SourceFile:70)
-3.0.3
-I: Using Apktool 3.0.3 on VENUS-HAX_2.2(Cracked) (1).apk with 4 threads
-I: Smaling smali folder into classes.dex...
-I: Building resources with aapt2...
-W: decoded/res/values-v34/colors.xml:3: error: resource android:color/bright_foreground_dark_disabled is private.
-W: decoded/res/values-v34/colors.xml:53: error: resource android:color/btn_default_material_dark is private.
-W: decoded/res/values-v34/colors.xml:54: error: resource android:color/btn_leanback_color is private.
-W: decoded/res/values-v34/colors.xml:4: error: resource android:color/accent_device_default_700 not found.
-W: decoded/res/values-v34/colors.xml:5: error: resource android:color/GM2_grey_800 is private.
-W: decoded/res/values-v34/colors.xml:6: error: resource android:color/accent_device_default_50 not found.
-W: decoded/res/values-v34/colors.xml:7: error: resource android:color/bright_foreground_dark_inverse is private.
-W: decoded/res/values-v34/colors.xml:55: error: resource android:color/btn_default_material_light is private.
-W: decoded/res/values-v34/colors.xml:56: error: resource android:color/btn_leanback_focused is private.
-W: decoded/res/values-v34/colors.xml:8: error: resource android:color/background_floating_device_default_light is private.
-W: decoded/res/values-v34/colors.xml:9: error: resource android:color/background_device_default_light is private.
-W: decoded/res/values-v34/colors.xml:10: error: resource android:color/background_holo_light is private.
-W: decoded/res/values-v34/colors.xml:11: error: resource android:color/background_floating_material_light is private.
-W: decoded/res/values-v34/colors.xml:12: error: resource android:color/bright_foreground_disabled_holo_light is private.
-W: decoded/res/values-v34/colors.xml:13: error: resource android:color/btn_colored_borderless_text_material is private.
-W: decoded/res/values-v34/colors.xml:14: error: resource android:color/bright_foreground_dark is private.
-W: decoded/res/values-v34/colors.xml:15: error: resource android:color/background_material_dark is private.
-W: decoded/res/values-v34/colors.xml:16: error: resource android:color/btn_colored_text_material is private.
-W: decoded/res/values-v34/colors.xml:17: error: resource android:color/car_blue_700 is private.
-W: decoded/res/values-v34/colors.xml:18: error: resource android:color/background_floating_device_default_dark is private.
-Exception in thread "main" brut.androlib.exceptions.AndrolibException: brut.common.BrutException: Execution failed (exit code = 1): [/tmp/aapt2_9299997033022120278684641739114539404.tmp, link, -o, /tmp/APKTOOL3513984938940637947.tmp, --manifest, decoded/AndroidManifest.xml, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-auto-version, --no-version-vectors, --no-version-transitions, --no-resource-deduping, --no-compile-sdk-metadata, --warn-manifest-validation, -I, /home/runner/.local/share/apktool/framework/1.apk, decoded/build/resources.zip]
-	at brut.androlib.res.AaptInvoker.invoke(SourceFile:186)
-	at brut.androlib.ApkBuilder.buildResources(SourceFile:357)
-	at brut.apktool.Main.main(SourceFile:92)
-Caused by: brut.common.BrutException: Execution failed (exit code = 1): [/tmp/aapt2_9299997033022120278684641739114539404.tmp, link, -o, /tmp/APKTOOL3513984938940637947.tmp, --manifest, decoded/AndroidManifest.xml, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-auto-version, --no-version-vectors, --no-version-transitions, --no-resource-deduping, --no-compile-sdk-metadata, --warn-manifest-validation, -I, /home/runner/.local/share/apktool/framework/1.apk, decoded/build/resources.zip]
-	at brut.util.OS.exec(SourceFile:147)
-	at brut.androlib.res.AaptInvoker.invoke(SourceFile:183)
-	... 2 more
-3.0.3
-total 26468
-drwxr-xr-x  2 runner runner     4096 Nov 18 05:55 .
-drwxrwxrwt 13 root   root       4096 Nov 18 05:55 ..
--rwxr-xr-x  1 runner runner 27092450 Nov 18 05:55 1.apk
-I: Using Apktool 3.0.3 on VENUS-HAX_2.2(Cracked) (1).apk with 4 threads
-I: Smaling smali folder into classes.dex...
-I: Building resources with aapt2...
-W: decoded/res/values-v34/colors.xml:3: error: resource android:color/bright_foreground_dark_disabled is private.
-W: decoded/res/values-v34/colors.xml:53: error: resource android:color/btn_default_material_dark is private.
-W: decoded/res/values-v34/colors.xml:54: error: resource android:color/btn_leanback_color is private.
-W: decoded/res/values-v34/colors.xml:4: error: resource android:color/accent_device_default_700 not found.
-W: decoded/res/values-v34/colors.xml:5: error: resource android:color/GM2_grey_800 is private.
-W: decoded/res/values-v34/colors.xml:6: error: resource android:color/accent_device_default_50 not found.
-W: decoded/res/values-v34/colors.xml:7: error: resource android:color/bright_foreground_dark_inverse is private.
-W: decoded/res/values-v34/colors.xml:55: error: resource android:color/btn_default_material_light is private.
-W: decoded/res/values-v34/colors.xml:56: error: resource android:color/btn_leanback_focused is private.
-W: decoded/res/values-v34/colors.xml:8: error: resource android:color/background_floating_device_default_light is private.
-W: decoded/res/values-v34/colors.xml:9: error: resource android:color/background_device_default_light is private.
-W: decoded/res/values-v34/colors.xml:10: error: resource android:color/background_holo_light is private.
-W: decoded/res/values-v34/colors.xml:11: error: resource android:color/background_floating_material_light is private.
-W: decoded/res/values-v34/colors.xml:12: error: resource android:color/bright_foreground_disabled_holo_light is private.
-W: decoded/res/values-v34/colors.xml:13: error: resource android:color/btn_colored_borderless_text_material is private.
-W: decoded/res/values-v34/colors.xml:14: error: resource android:color/bright_foreground_dark is private.
-W: decoded/res/values-v34/colors.xml:15: error: resource android:color/background_material_dark is private.
-W: decoded/res/values-v34/colors.xml:16: error: resource android:color/btn_colored_text_material is private.
-W: decoded/res/values-v34/colors.xml:17: error: resource android:color/car_blue_700 is private.
-W: decoded/res/values-v34/colors.xml:18: error: resource android:color/background_floating_device_default_dark is private.
-Exception in thread "main" brut.androlib.exceptions.AndrolibException: brut.common.BrutException: Execution failed (exit code = 1): [/tmp/aapt2_105134248201749936044490443521097563101.tmp, link, -o, /tmp/APKTOOL7389306769315704299.tmp, --manifest, decoded/AndroidManifest.xml, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-auto-version, --no-version-vectors, --no-version-transitions, --no-resource-deduping, --no-compile-sdk-metadata, --warn-manifest-validation, -I, /tmp/fw/1.apk, decoded/build/resources.zip]
-	at brut.androlib.res.AaptInvoker.invoke(SourceFile:186)
-	at brut.androlib.ApkBuilder.buildResources(SourceFile:357)
-	at brut.apktool.Main.main(SourceFile:92)
-Caused by: brut.common.BrutException: Execution failed (exit code = 1): [/tmp/aapt2_105134248201749936044490443521097563101.tmp, link, -o, /tmp/APKTOOL7389306769315704299.tmp, --manifest, decoded/AndroidManifest.xml, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-auto-version, --no-version-vectors, --no-version-transitions, --no-resource-deduping, --no-compile-sdk-metadata, --warn-manifest-validation, -I, /tmp/fw/1.apk, decoded/build/resources.zip]
-	at brut.util.OS.exec(SourceFile:147)
-	at brut.androlib.res.AaptInvoker.invoke(SourceFile:183)
-	... 2 more
-2.12.1
-total 26468
-drwxr-xr-x  2 runner runner     4096 Nov 18 06:00 .
-drwxrwxrwt 13 root   root       4096 Nov 18 06:00 ..
--rwxr-xr-x  1 runner runner 27092450 Nov 18 06:00 1.apk
-I: Using Apktool 2.12.1 on VENUS-HAX_2.2(Cracked) (1).apk with 4 threads
-I: Checking whether sources have changed...
-I: Smaling smali folder into classes.dex...
-I: Checking whether resources have changed...
-I: Building resources with aapt2...
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:3: error: resource android:color/bright_foreground_dark_disabled is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:53: error: resource android:color/btn_default_material_dark is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:54: error: resource android:color/btn_leanback_color is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:4: error: resource android:color/accent_device_default is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:5: error: resource android:color/GM2_grey_800 is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:6: error: resource android:color/accent_device_default is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:7: error: resource android:color/bright_foreground_dark_inverse is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:55: error: resource android:color/btn_default_material_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:56: error: resource android:color/btn_leanback_focused is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:8: error: resource android:color/background_floating_device_default_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:9: error: resource android:color/background_device_default_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:10: error: resource android:color/background_holo_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:11: error: resource android:color/background_floating_material_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:12: error: resource android:color/bright_foreground_disabled_holo_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:13: error: resource android:color/btn_colored_borderless_text_material is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:14: error: resource android:color/bright_foreground_dark is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:15: error: resource android:color/background_material_dark is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:16: error: resource android:color/btn_colored_text_material is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:17: error: resource android:color/car_blue_700 is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:18: error: resource android:color/background_floating_device_default_dark is private.
-Exception in thread "main" brut.androlib.exceptions.AndrolibException: brut.common.BrutException: could not exec (exit code = 1): [/tmp/brut_util_Jar_46899014892635732905666460034700069282.tmp, link, -o, /tmp/APKTOOL14955080965585382213.tmp, --package-id, 127, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-auto-version, --no-version-vectors, --no-version-transitions, --no-resource-deduping, --no-compile-sdk-metadata, --warn-manifest-validation, -I, /tmp/fw/1.apk, --manifest, /home/runner/work/Testt/Testt/decoded/AndroidManifest.xml, /home/runner/work/Testt/Testt/decoded/build/resources.zip]
-	at brut.androlib.AaptInvoker.invoke(SourceFile:212)
-	at brut.androlib.ApkBuilder.buildResources(SourceFile:328)
-	at brut.apktool.Main.main(SourceFile:96)
-Caused by: brut.common.BrutException: could not exec (exit code = 1): [/tmp/brut_util_Jar_46899014892635732905666460034700069282.tmp, link, -o, /tmp/APKTOOL14955080965585382213.tmp, --package-id, 127, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-auto-version, --no-version-vectors, --no-version-transitions, --no-resource-deduping, --no-compile-sdk-metadata, --warn-manifest-validation, -I, /tmp/fw/1.apk, --manifest, /home/runner/work/Testt/Testt/decoded/AndroidManifest.xml, /home/runner/work/Testt/Testt/decoded/build/resources.zip]
-	at brut.util.OS.exec(SourceFile:148)
-	at brut.androlib.AaptInvoker.invoke(SourceFile:208)
-	... 2 more
-2.10.0
-total 26468
-drwxr-xr-x  2 runner runner     4096 Nov 18 06:03 .
-drwxrwxrwt 13 root   root       4096 Nov 18 06:03 ..
--rwxr-xr-x  1 runner runner 27092450 Nov 18 06:03 1.apk
-I: Using Apktool 2.10.0 with 4 thread(s).
-I: Checking whether sources has changed...
-I: Smaling smali folder into classes.dex...
-I: Checking whether resources has changed...
-I: Building resources...
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:3: error: resource android:color/bright_foreground_dark_disabled is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:53: error: resource android:color/btn_default_material_dark is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:54: error: resource android:color/btn_leanback_color is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:4: error: resource android:color/accent_device_default is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:5: error: resource android:color/GM2_grey_800 is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:6: error: resource android:color/accent_device_default is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:7: error: resource android:color/bright_foreground_dark_inverse is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:55: error: resource android:color/btn_default_material_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:56: error: resource android:color/btn_leanback_focused is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:8: error: resource android:color/background_floating_device_default_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:9: error: resource android:color/background_device_default_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:10: error: resource android:color/background_holo_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:11: error: resource android:color/background_floating_material_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:12: error: resource android:color/bright_foreground_disabled_holo_light is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:13: error: resource android:color/btn_colored_borderless_text_material is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:14: error: resource android:color/bright_foreground_dark is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:15: error: resource android:color/background_material_dark is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:16: error: resource android:color/btn_colored_text_material is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:17: error: resource android:color/car_blue_700 is private.
-W: /home/runner/work/Testt/Testt/decoded/res/values-v34/colors.xml:18: error: resource android:color/background_floating_device_default_dark is private.
-brut.androlib.exceptions.AndrolibException: brut.common.BrutException: could not exec (exit code = 1): [/tmp/brut_util_Jar_160706295430789200074311561000723063392.tmp, link, -o, /tmp/APKTOOL12037050548480444313.tmp, --package-id, 127, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-auto-version, --no-version-vectors, --no-version-transitions, --no-resource-deduping, --allow-reserved-package-id, --no-compile-sdk-metadata, --warn-manifest-validation, -e, /tmp/APKTOOL15231924058429551188.tmp, -0, arsc, -I, /tmp/fw/1.apk, --manifest, /home/runner/work/Testt/Testt/decoded/AndroidManifest.xml, /home/runner/work/Testt/Testt/decoded/build/resources.zip]
-2.10.0
-total 26468
-drwxr-xr-x  2 runner runner     4096 Nov 18 06:06 .
-drwxrwxrwt 14 root   root       4096 Nov 18 06:06 ..
--rwxr-xr-x  1 runner runner 27092450 Nov 18 06:06 1.apk
-I: Using Apktool 2.10.0 with 4 thread(s).
-I: Checking whether sources has changed...
-I: Smaling smali folder into classes.dex...
-I: Checking whether resources has changed...
-I: Building resources...
-I: Copying libs... (/lib)
-I: Copying libs... (/kotlin)
-I: Building apk file...
-I: Copying unknown files/dir...
-java.io.FileNotFoundException: decoded/unknown/DebugProbesKt.bin (No such file or directory)
-2.10.0
-total 26468
-drwxr-xr-x  2 runner runner     4096 Nov 18 06:08 .
-drwxrwxrwt 13 root   root       4096 Nov 18 06:08 ..
--rwxr-xr-x  1 runner runner 27092450 Nov 18 06:08 1.apk
+== build start ==
+Selecting previously unselected package android-liblog:amd64.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 213647 files and directories currently installed.)
+Preparing to unpack .../0-android-liblog_1%3a34.0.5-12build1_amd64v3.deb ...
+Unpacking android-liblog:amd64 (1:34.0.5-12build1) ...
+Selecting previously unselected package android-libbase:amd64.
+Preparing to unpack .../1-android-libbase_1%3a34.0.5-12build1_amd64v3.deb ...
+Unpacking android-libbase:amd64 (1:34.0.5-12build1) ...
+Selecting previously unselected package android-libbacktrace:amd64.
+Preparing to unpack .../2-android-libbacktrace_1%3a34.0.5-12build1_amd64v3.deb ...
+Unpacking android-libbacktrace:amd64 (1:34.0.5-12build1) ...
+Selecting previously unselected package android-libziparchive:amd64.
+Preparing to unpack .../3-android-libziparchive_1%3a34.0.5-12build1_amd64v3.deb ...
+Unpacking android-libziparchive:amd64 (1:34.0.5-12build1) ...
+Selecting previously unselected package libapksig-java.
+Preparing to unpack .../4-libapksig-java_35.0.2-1_all.deb ...
+Unpacking libapksig-java (35.0.2-1) ...
+Selecting previously unselected package apksigner.
+Preparing to unpack .../5-apksigner_35.0.2-1_all.deb ...
+Unpacking apksigner (35.0.2-1) ...
+Selecting previously unselected package libzopfli1.
+Preparing to unpack .../6-libzopfli1_1.0.3-3build1_amd64v3.deb ...
+Unpacking libzopfli1 (1.0.3-3build1) ...
+Selecting previously unselected package android-libcutils:amd64.
+Preparing to unpack .../7-android-libcutils_1%3a34.0.5-12build1_amd64v3.deb ...
+Unpacking android-libcutils:amd64 (1:34.0.5-12build1) ...
+Selecting previously unselected package android-libutils:amd64.
+Preparing to unpack .../8-android-libutils_1%3a34.0.5-12build1_amd64v3.deb ...
+Unpacking android-libutils:amd64 (1:34.0.5-12build1) ...
+Selecting previously unselected package zipalign.
+Preparing to unpack .../9-zipalign_1%3a10.0.0+r36-1.1build1_amd64v3.deb ...
+Unpacking zipalign (1:10.0.0+r36-1.1build1) ...
+Setting up android-liblog:amd64 (1:34.0.5-12build1) ...
+Setting up libzopfli1 (1.0.3-3build1) ...
+Setting up android-libbase:amd64 (1:34.0.5-12build1) ...
+Setting up libapksig-java (35.0.2-1) ...
+Setting up android-libziparchive:amd64 (1:34.0.5-12build1) ...
+Setting up android-libcutils:amd64 (1:34.0.5-12build1) ...
+Setting up apksigner (35.0.2-1) ...
+Setting up android-libbacktrace:amd64 (1:34.0.5-12build1) ...
+Setting up android-libutils:amd64 (1:34.0.5-12build1) ...
+Setting up zipalign (1:10.0.0+r36-1.1build1) ...
+Processing triggers for man-db (2.13.1-1build1) ...
+Not building database; man-db/auto-update is not 'true'.
+Processing triggers for libc-bin (2.43-2ubuntu2.4) ...
+
+Running kernel seems to be up-to-date.
+
+Restarting services...
+
+Service restarts being deferred:
+ systemctl restart hosted-compute-agent.service
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+-rw-r--r-- 1 runner runner 24352463 Sep 17  2024 /tmp/apktool.jar
+Archive:  /tmp/p35.zip
+  inflating: /tmp/android.jar        
+total 26460
+-rw-r--r-- 1 runner runner 27092450 Nov 18 06:29 1.apk
 I: Using Apktool 2.10.0 with 4 thread(s).
 I: Checking whether sources has changed...
 I: Smaling smali folder into classes.dex...
@@ -293,18 +71,10 @@ I: Copying libs... (/kotlin)
 I: Building apk file...
 I: Copying unknown files/dir...
 I: Built apk into: unsigned.apk
-2.10.0
-total 26468
-drwxr-xr-x  2 runner runner     4096 Nov 18 06:18 .
-drwxrwxrwt 13 root   root       4096 Nov 18 06:18 ..
--rwxr-xr-x  1 runner runner 27092450 Nov 18 06:18 1.apk
-I: Using Apktool 2.10.0 with 4 thread(s).
-I: Checking whether sources has changed...
-I: Smaling smali folder into classes.dex...
-I: Checking whether resources has changed...
-I: Building resources...
-I: Copying libs... (/lib)
-I: Copying libs... (/kotlin)
-I: Building apk file...
-I: Copying unknown files/dir...
-I: Built apk into: unsigned.apk
+size: 1062064
+magic: c61fbc03c103191f
+plain js bundle, occurrences: 1
+PASS plain replace
+Generating 2,048 bit RSA key pair and self-signed certificate (SHA256withRSA) with a validity of 10,000 days
+	for: CN=bgmi
+[Storing keystore.jks]
