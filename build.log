@@ -60,8 +60,8 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Archive:  /tmp/p35.zip
   inflating: /tmp/android.jar        
 total 26460
--rw-r--r-- 1 runner runner 27092450 Nov 18 16:19 1.apk
--rw-r--r-- 1 runner runner 1062064 Nov 18 16:19 decoded/assets/index.android.bundle
+-rw-r--r-- 1 runner runner 27092450 Nov 18 16:21 1.apk
+-rw-r--r-- 1 runner runner 1062064 Nov 18 16:21 decoded/assets/index.android.bundle
 I: Using Apktool 2.10.0 with 4 thread(s).
 I: Checking whether sources has changed...
 I: Smaling smali folder into classes.dex...
@@ -72,8 +72,40 @@ I: Copying libs... (/kotlin)
 I: Building apk file...
 I: Copying unknown files/dir...
 I: Built apk into: unsigned.apk
-size: 1062064
-magic: c61fbc03c103191f
-stringCount: 6866 overflowCount: 9 storageSize: 100424
-table candidates: 2 [240636, 258780]
-FAIL: no string entry matched by content
+size: 1062064 sc: 6866 oc: 9 sss: 100424
+kinds: 3 identifiers: 3810
+  pad 0 done, hits 0
+  pad 1 done, hits 0
+  pad 2 done, hits 0
+  pad 3 done, hits 0
+  pad 4 done, hits 0
+  pad 5 done, hits 0
+  pad 6 done, hits 0
+  pad 7 done, hits 0
+  pad 8 done, hits 0
+  pad 9 done, hits 0
+  pad 10 done, hits 0
+  pad 11 done, hits 0
+  pad 12 done, hits 0
+  pad 13 done, hits 0
+  pad 14 done, hits 0
+  pad 15 done, hits 0
+  pad 16 done, hits 0
+  pad 0 done, hits 0
+  pad 1 done, hits 0
+  pad 2 done, hits 0
+  pad 3 done, hits 0
+  pad 4 done, hits 0
+  pad 5 done, hits 0
+  pad 6 done, hits 0
+  pad 7 done, hits 0
+  pad 8 done, hits 0
+  pad 9 done, hits 0
+  pad 10 done, hits 0
+  pad 11 done, hits 0
+  pad 12 done, hits 0
+  pad 13 done, hits 0
+  pad 14 done, hits 0
+  pad 15 done, hits 0
+  pad 16 done, hits 0
+DONE
