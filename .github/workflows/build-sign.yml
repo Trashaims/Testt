@@ -14,8 +14,18 @@ jobs:
 
       - name: Get apktool
         run: |
-          curl -sSL -o apktool.jar curl -sSL -o apktool.jar https://github.com/iBotPeaches/Apktool/releases/download/v3.0.3/apktool_3.0.3.jar
+          curl -sSL -o apktool.jar https://github.com/iBotPeaches/Apktool/releases/download/v3.0.3/apktool_3.0.3.jar
           java -jar apktool.jar --version 2>&1 | tee -a build.log
+
+      - name: Framework
+        run: |
+          set -o pipefail
+          mkdir -p /tmp/fw
+          if [ ! -f "$ANDROID_HOME/platforms/android-35/android.jar" ]; then
+            yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" 2>&1 | tail -5
+          fi
+          cp "$ANDROID_HOME/platforms/android-35/android.jar" /tmp/fw/1.apk
+          ls -la /tmp/fw | tee -a build.log
 
       - name: Drop unknown dir
         run: rm -rf decoded/unknown
@@ -23,7 +33,7 @@ jobs:
       - name: Build
         run: |
           set -o pipefail
-          java -jar apktool.jar b decoded -o unsigned.apk 2>&1 | tee -a build.log
+          java -jar apktool.jar b --frame-path /tmp/fw decoded -o unsigned.apk 2>&1 | tee -a build.log
 
       - name: Commit log
         if: always()
