@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 # Repoint the container's KOREA card from com.pubg.krmobile to com.pubg.imobile.
-# Hermes storage is a bare concatenation; lengths live only in the string table,
-# so shrinking means deleting bytes and shifting every offset after them.
 import os, struct, sys
 
 TARGET = b"com.pubg.krmobile"
@@ -32,14 +30,13 @@ def extent(b, T, sc, oc):
 def plausible(b, p, sss):
     a = u32(b, p)
     c = u32(b, p + 4)
-    return a < sss and c <= 4096 and a + c <= sss
+    return a < sss and 0 < c <= 4096 and a + c <= sss
 
 def find_tables(b, sss):
-    """Positions where 32+ consecutive (offset, length) pairs look valid."""
     out = []
     pos = 64
     while pos + 8 * 33 <= len(b):
-        if plausible(b, pos, sss):
+        if plausible(b, pos, sss) and not (pos >= 4 and plausible(b, pos - 4, sss)):
             k = 1
             while k < 32 and plausible(b, pos + 8 * k, sss):
                 k += 1
@@ -77,13 +74,19 @@ def main():
         sys.exit("FAIL: header fields not sane")
 
     tables = find_tables(b, sss)
-    print("table candidates:", len(tables), tables[:6])
+    print("table candidates:", len(tables), tables[:8])
     if not tables:
         sys.exit("FAIL: no table found")
 
     hit = None
+    shown = 0
     for T in tables:
+        if T + 8 * sc + oc * 16 > len(b):
+            continue
         ex = extent(b, T, sc, oc)
+        if shown < 8:
+            print("  T=%d extent=%d/%d base=%d" % (T, ex, sss, T + oc * 16 + sc * 8))
+            shown += 1
         if ex != sss:
             continue
         base = T + oc * 16 + sc * 8
@@ -112,10 +115,7 @@ def main():
             break
 
     if not hit:
-        print("FAIL: table found but no matching entry")
-        for T in tables[:3]:
-            print("  T=%d extent=%d/%d first=%d,%d" % (T, extent(b, T, sc, oc), sss, u32(b, T), u32(b, T + 4)))
-        sys.exit(1)
+        sys.exit("FAIL: no table/entry matched")
 
     P, needle, S, E, T, off = hit
     L = u32(b, E + 4)
