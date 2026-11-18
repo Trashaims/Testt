@@ -16,7 +16,6 @@ def u64(b, o):
     return struct.unpack_from("<Q", b, o)[0]
 
 def extent(b, T, sc, oc):
-    """Largest offset+length in the whole table; equals storageSize when T is right."""
     m = 0
     for k in range(sc):
         e = T + 8 * k
@@ -29,6 +28,25 @@ def extent(b, T, sc, oc):
         if v > m:
             m = v
     return m
+
+def plausible(b, p, sss):
+    a = u32(b, p)
+    c = u32(b, p + 4)
+    return a < sss and c <= 4096 and a + c <= sss
+
+def find_tables(b, sss):
+    """Positions where 32+ consecutive (offset, length) pairs look valid."""
+    out = []
+    pos = 64
+    while pos + 8 * 33 <= len(b):
+        if plausible(b, pos, sss):
+            k = 1
+            while k < 32 and plausible(b, pos + 8 * k, sss):
+                k += 1
+            if k >= 32:
+                out.append(pos)
+        pos += 4
+    return out
 
 def main():
     if len(sys.argv) < 2:
@@ -51,50 +69,42 @@ def main():
         print("PASS plain replace")
         return
 
-    ver = u32(b, 8)
     sc = u32(b, 52)
     oc = u32(b, 56)
     sss = u32(b, 60)
-    print("hermes version:", ver)
     print("stringCount:", sc, "overflowCount:", oc, "storageSize:", sss)
     if not (0 < sc < 2000000) or oc > 100000 or not (0 < sss < len(b)):
         sys.exit("FAIL: header fields not sane")
 
-    cands = []
-    for needle in (TARGET, REPL):
-        c = b.find(needle)
-        while c != -1:
-            cands.append((c, needle))
-            c = b.find(needle, c + 1)
-    print("candidates:", len(cands))
-    if not cands:
-        sys.exit("FAIL: neither string present")
+    tables = find_tables(b, sss)
+    print("table candidates:", len(tables), tables[:6])
+    if not tables:
+        sys.exit("FAIL: no table found")
 
     hit = None
-    tried = 0
-    diag = []
-    for cand, needle in cands:
-        for e in range(64, len(b) - 8, 4):
-            if u32(b, e + 4) != len(needle):
+    for T in tables:
+        ex = extent(b, T, sc, oc)
+        if ex != sss:
+            continue
+        base = T + oc * 16 + sc * 8
+        for pad in range(0, 9):
+            S = base + pad
+            if S + sss > len(b):
                 continue
-            off = u32(b, e)
-            if off + len(needle) > sss:
-                continue
-            S = cand - off
-            if S < 64 or S + sss > len(b):
-                continue
-            for pad in range(0, 8):
-                T = S - oc * 16 - sc * 8 - pad
-                if T < 64 or (e - T) % 8:
-                    continue
-                if not (0 <= e - T < 8 * sc):
-                    continue
-                ex = extent(b, T, sc, oc)
-                if len(diag) < 10:
-                    diag.append((cand, e, off, S, pad, ex))
-                tried += 1
-                if ex == sss:
-                    hit = (cand, needle, S, e, T)
+            for needle in (TARGET, REPL):
+                cand = b.find(needle)
+                while cand != -1:
+                    off = cand - S
+                    if 0 <= off and off + len(needle) <= sss:
+                        for k in range(sc):
+                            e = T + 8 * k
+                            if u32(b, e) == off and u32(b, e + 4) == len(needle):
+                                hit = (cand, needle, S, e, T, off)
+                                break
+                    if hit:
+                        break
+                    cand = b.find(needle, cand + 1)
+                if hit:
                     break
             if hit:
                 break
@@ -102,17 +112,18 @@ def main():
             break
 
     if not hit:
-        print("FAIL: no storage base validated (tried %d)" % tried)
-        for cand, e, off, S, pad, ex in diag:
-            print("  cand=%d e=%d off=%d S=%d pad=%d extent=%d/%d" % (cand, e, off, S, pad, ex, sss))
+        print("FAIL: table found but no matching entry")
+        for T in tables[:3]:
+            print("  T=%d extent=%d/%d first=%d,%d" % (T, extent(b, T, sc, oc), sss, u32(b, T), u32(b, T + 4)))
         sys.exit(1)
 
-    P, needle, S, E, T = hit
-    off = P - S
+    P, needle, S, E, T, off = hit
     L = u32(b, E + 4)
-    print("storage=%d offset=%d entry=%d table=%d len=%d" % (S, off, E, T, L))
+    print("table=%d storage=%d offset=%d entry=%d len=%d" % (T, S, off, E, L))
+    if bytes(b[P:P + len(needle)]) != needle:
+        sys.exit("FAIL: bytes at offset do not match")
 
-    if L == len(REPL) and bytes(b[P:P + len(REPL)]) == REPL:
+    if L == len(REPL) and needle == REPL:
         print("state: already correct")
         print("PASS, size:", len(b))
         return
@@ -144,7 +155,7 @@ def main():
     if u32(b, 32) != len(b):
         sys.exit("FAIL: fileLength mismatch")
     if extent(b, T, sc, oc) != sss - DELTA:
-        sys.exit("FAIL: table extent wrong after edit")
+        sys.exit("FAIL: extent wrong after edit")
 
     open(path, "wb").write(bytes(b))
     print("PASS, new size:", len(b))
