@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="36" android:compileSdkVersionCodename="16" package="com.google.zerax" platformBuildVersionCode="36" platformBuildVersionName="16">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-feature android:name="android.hardware.microphone" android:required="false"/>
+    <uses-permission android:name="android.permission.REORDER_TASKS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <category android:name="android.intent.category.BROWSABLE"/>
+            <data android:scheme="https"/>
+        </intent>
+        <package android:name="com.tencent.ig"/>
+        <package android:name="com.pubg.krmobile"/>
+        <package android:name="com.vng.pubgmobile"/>
+        <package android:name="com.rekoo.pubgm"/>
+        <package android:name="com.android.vending"/>
+        <package android:name="com.facebook.katana"/>
+        <package android:name="com.google.android.gms"/>
+        <package android:name="com.android.chrome"/>
+        <intent>
+            <action android:name="android.support.customtabs.action.CustomTabsService"/>
+        </intent>
+    </queries>
+    <uses-permission android:name="android.permission.HIDE_OVERLAY_WINDOWS"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCAL_NETWORK"/>
+    <uses-permission android:name="android.permission.QUERY_ADVANCED_PROTECTION_MODE"/>
+    <uses-permission android:name="android.permission.DUMP"/>
+    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS"/>
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.soter.permission.ACCESS_SOTER_KEYSTORE"/>
+    <uses-permission android:name="com.oplus.permission.safe.FANTASYWINDOW"/>
+    <uses-permission android:name="miui.permission.READ_STEPS"/>
+    <uses-permission android:name="com.facebook.services.identity.FEO2"/>
+    <uses-permission android:name="com.google.android.providers.talk.permission.READ_ONLY"/>
+    <uses-permission android:name="com.google.android.providers.talk.permission.WRITE_ONLY"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID_NOTIFICATION"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_PHONE_CALL"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_REMOTE_MESSAGING"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SYSTEM_EXEMPTED"/>
+    <uses-permission android:name="com.open.gallery.smart.Read"/>
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <uses-permission android:name="android.permission.ACCEPT_HANDOVER"/>
+    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS"/>
+    <uses-permission android:name="android.permission.BODY_SENSORS_BACKGROUND"/>
+    <uses-permission android:name="android.permission.UWB_RANGING"/>
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="android.permission.DETECT_SCREEN_CAPTURE"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="ohos.permission.GET_BUNDLE_INFO"/>
+    <uses-permission android:name="android.permission.MANAGE_OWN_CALLS"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+    <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.RUN_USER_INITIATED_JOBS"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission-sdk-23 android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.WRITE_SOCIAL_STREAM"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_PROFILE"/>
+    <uses-permission android:name="android.permission.READ_USER_DICTIONARY"/>
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.SUBSCRIBED_FEEDS_READ"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.SUBSCRIBED_FEEDS_WRITE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.READ_SOCIAL_STREAM"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.BODY_SENSORS"/>
+    <uses-permission android:name="android.permission.BROADCAST_STICKY"/>
+    <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.TRANSMIT_IR"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.READ_PROFILE"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
+    <uses-permission android:name="android.permission.RECEIVE_WAP_PUSH"/>
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
+    <uses-permission android:name="android.permission.RECEIVE_MMS"/>
+    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+    <uses-permission android:name="android.permission.NFC"/>
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_SYNC_STATS"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.SET_WALLPAPER"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.NEARBY_WIFI_DEVICES"/>
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
+    <uses-permission android:name="android.permission.USE_SIP"/>
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION"/>
+    <uses-feature android:name="zidane.software.ability" android:required="false"/>
+    <permission android:name="com.google.zerax.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" android:protectionLevel="signature"/>
+    <uses-permission android:name="com.google.zerax.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"/>
+    <application android:allowBackup="true" android:allowNativeHeapPointerTagging="false" android:appCategory="game" android:appComponentFactory="tp.mu.F" android:dataExtractionRules="@xml/data_extraction_rules" android:extractNativeLibs="true" android:fullBackupContent="@xml/backup_rules" android:hardwareAccelerated="true" android:icon="@mipmap/ic_launcher" android:isGame="true" android:label="@string/app_name" android:largeHeap="true" android:name="tp.mu.a" android:networkSecurityConfig="@xml/network_security_config" android:requestLegacyExternalStorage="true" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme" android:usesCleartextTraffic="true">
+        <meta-data android:name="is_game" android:value="true"/>
+        <meta-data android:name="app_type" android:value="game"/>
+        <meta-data android:name="preloaded_fonts" android:resource="@array/preloaded_fonts"/>
+        <activity android:exported="true" android:launchMode="singleTop" android:name="com.google.zerax.activity.PermissionGateActivity" android:screenOrientation="portrait" android:theme="@style/LoaderLaunchTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.GAME"/>
+            </intent-filter>
+        </activity>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:launchMode="singleTop" android:name="com.google.zerax.activity.LoginActivity" android:screenOrientation="portrait" android:theme="@style/VisionScreenTheme" android:windowSoftInputMode="adjustResize"/>
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode" android:exported="false" android:launchMode="singleTop" android:name="com.google.zerax.activity.HomeActivity" android:screenOrientation="portrait" android:theme="@style/VisionScreenTheme"/>
+        <provider android:authorities="com.google.zerax.provider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_path"/>
+        </provider>
+        <property android:name="android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY" android:value="true"/>
+        <provider android:authorities="com.google.zerax.service.provider" android:exported="false" android:name="top.mundopp.guardian.MundoPPSupervisorProvider"/>
+        <activity android:name="top.mundopp.launcher.MundoPPActivity$P"/>
+        <activity android:exported="true" android:launchMode="singleTask" android:name="top.mundopp.launcher.MundoPPIntermediary" android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.CHOOSER"/>
+            </intent-filter>
+        </activity>
+        <activity-alias android:enabled="true" android:exported="true" android:label="Facebook Login" android:name="top.mundopp.FBLoginAbility" android:targetActivity="top.mundopp.launcher.MundoPPIntermediary">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="fbconnect"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="cct.com.tencent.ig" android:scheme="fbconnect"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="cct.com.pubg.imobile" android:scheme="fbconnect"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="tencent1106545419"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="imobile1450"/>
+            </intent-filter>
+        </activity-alias>
+        <activity android:exported="false" android:launchMode="singleTask" android:name="top.mundopp.launcher.MundoPPSplashLauncher" android:noHistory="true" android:theme="@android:style/Theme.DeviceDefault.NoActionBar.Fullscreen"/>
+        <service android:name="top.mundopp.launcher.MundoPPService$P" android:permission="android.permission.BIND_VPN_SERVICE"/>
+        <service android:exported="false" android:name="top.mundopp.engine.proxy.SupervisorKeepAliveService"/>
+        <receiver android:exported="true" android:name="top.mundopp.launcher.MundoPPReceiver">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.google.zerax.MundoPP.receiver.p"/>
+            </intent-filter>
+        </receiver>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P1" android:process=":p1" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P2" android:process=":p2" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P3" android:process=":p3" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P4" android:process=":p4" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P5" android:process=":p5" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P6" android:process=":p6" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P7" android:process=":p7" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P8" android:process=":p8" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P9" android:process=":p9" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P10" android:process=":p10" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P11" android:process=":p11" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P12" android:process=":p12" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P13" android:process=":p13" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P14" android:process=":p14" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P15" android:process=":p15" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P16" android:process=":p16" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P17" android:process=":p17" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P18" android:process=":p18" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P19" android:process=":p19" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P20" android:process=":p20" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P21" android:process=":p21" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P22" android:process=":p22" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P23" android:process=":p23" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P24" android:process=":p24" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P1H" android:process=":p1" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P2H" android:process=":p2" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P3H" android:process=":p3" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P4H" android:process=":p4" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P5H" android:process=":p5" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P6H" android:process=":p6" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P7H" android:process=":p7" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P8H" android:process=":p8" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P9H" android:process=":p9" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P10H" android:process=":p10" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P11H" android:process=":p11" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P12H" android:process=":p12" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P13H" android:process=":p13" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P14H" android:process=":p14" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P15H" android:process=":p15" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P16H" android:process=":p16" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P17H" android:process=":p17" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P18H" android:process=":p18" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P19H" android:process=":p19" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P20H" android:process=":p20" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P21H" android:process=":p21" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P22H" android:process=":p22" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P23H" android:process=":p23" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <activity android:autoRemoveFromRecents="true" android:configChanges="colorMode|density|fontScale|fontWeightAdjustment|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:name="top.mundopp.launcher.MundoPPActivity$P24H" android:process=":p24" android:screenOrientation="sensorLandscape" android:supportsPictureInPicture="true" android:taskAffinity="top.mundopp.taskaff" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+        <provider android:authorities="com.google.zerax.provider.p1" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P1" android:process=":p1"/>
+        <provider android:authorities="com.google.zerax.provider.p2" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P2" android:process=":p2"/>
+        <provider android:authorities="com.google.zerax.provider.p3" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P3" android:process=":p3"/>
+        <provider android:authorities="com.google.zerax.provider.p4" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P4" android:process=":p4"/>
+        <provider android:authorities="com.google.zerax.provider.p5" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P5" android:process=":p5"/>
+        <provider android:authorities="com.google.zerax.provider.p6" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P6" android:process=":p6"/>
+        <provider android:authorities="com.google.zerax.provider.p7" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P7" android:process=":p7"/>
+        <provider android:authorities="com.google.zerax.provider.p8" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P8" android:process=":p8"/>
+        <provider android:authorities="com.google.zerax.provider.p9" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P9" android:process=":p9"/>
+        <provider android:authorities="com.google.zerax.provider.p10" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P10" android:process=":p10"/>
+        <provider android:authorities="com.google.zerax.provider.p11" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P11" android:process=":p11"/>
+        <provider android:authorities="com.google.zerax.provider.p12" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P12" android:process=":p12"/>
+        <provider android:authorities="com.google.zerax.provider.p13" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P13" android:process=":p13"/>
+        <provider android:authorities="com.google.zerax.provider.p14" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P14" android:process=":p14"/>
+        <provider android:authorities="com.google.zerax.provider.p15" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P15" android:process=":p15"/>
+        <provider android:authorities="com.google.zerax.provider.p16" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P16" android:process=":p16"/>
+        <provider android:authorities="com.google.zerax.provider.p17" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P17" android:process=":p17"/>
+        <provider android:authorities="com.google.zerax.provider.p18" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P18" android:process=":p18"/>
+        <provider android:authorities="com.google.zerax.provider.p19" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P19" android:process=":p19"/>
+        <provider android:authorities="com.google.zerax.provider.p20" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P20" android:process=":p20"/>
+        <provider android:authorities="com.google.zerax.provider.p21" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P21" android:process=":p21"/>
+        <provider android:authorities="com.google.zerax.provider.p22" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P22" android:process=":p22"/>
+        <provider android:authorities="com.google.zerax.provider.p23" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P23" android:process=":p23"/>
+        <provider android:authorities="com.google.zerax.provider.p24" android:exported="true" android:grantUriPermissions="true" android:name="top.mundopp.launcher.MundoPPProvider$P24" android:process=":p24"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P1" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p1"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P2" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p2"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P3" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p3"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P4" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p4"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P5" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p5"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P6" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p6"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P7" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p7"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P8" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p8"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P9" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p9"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P10" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p10"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P11" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p11"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P12" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p12"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P13" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p13"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P14" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p14"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P15" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p15"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P16" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p16"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P17" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p17"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P18" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p18"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P19" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p19"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P20" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p20"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P21" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p21"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P22" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p22"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P23" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p23"/>
+        <service android:exported="false" android:foregroundServiceType="connectedDevice|dataSync|mediaPlayback|phoneCall" android:name="top.mundopp.launcher.MundoPPService$P24" android:permission="android.permission.BIND_JOB_SERVICE" android:process=":p24"/>
+        <activity android:exported="false" android:name="top.mundopp.engine.proxy.gms.GmsSignInBridgeActivity" android:theme="@style/MundoGoogleGlass"/>
+        <activity android:exported="false" android:name="top.mundopp.engine.proxy.browser.GuestBrowserActivity" android:theme="@style/MundoGuestBrowser"/>
+        <provider android:authorities="com.google.zerax.embedded.google" android:exported="false" android:name="top.mundopp.engine.proxy.gms.embedded.EmbeddedGoogleProvider"/>
+        <activity android:configChanges="keyboardHidden|orientation|screenSize" android:exported="false" android:name="top.mundopp.engine.proxy.gms.embedded.EmbeddedGoogleLoginActivity" android:theme="@style/MundoGoogleBrowser"/>
+        <activity android:exported="false" android:name="top.mundopp.engine.proxy.gms.embedded.EmbeddedGoogleConsentActivity" android:theme="@style/MundoGoogleGlass"/>
+        <provider android:authorities="com.google.zerax.androidx-startup" android:exported="false" android:name="androidx.startup.InitializationProvider">
+            <meta-data android:name="androidx.emoji2.text.EmojiCompatInitializer" android:value="androidx.startup"/>
+            <meta-data android:name="androidx.lifecycle.ProcessLifecycleInitializer" android:value="androidx.startup"/>
+            <meta-data android:name="androidx.profileinstaller.ProfileInstallerInitializer" android:value="androidx.startup"/>
+        </provider>
+        <receiver android:directBootAware="false" android:enabled="true" android:exported="true" android:name="androidx.profileinstaller.ProfileInstallReceiver" android:permission="android.permission.DUMP">
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SKIP_FILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION"/>
+            </intent-filter>
+        </receiver>
+        <meta-data android:name="com.facebook.soloader.enabled" android:value="false"/>
+    </application>
+</manifest>

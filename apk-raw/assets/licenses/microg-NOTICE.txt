@@ -1,0 +1,18 @@
+Mundo++ embedded Google authentication
+
+This AAR contains an adapted authentication subset from microG GmsCore.
+Copyright (C) 2013-2017 microG Project Team
+SPDX-FileCopyrightText: 2023 microG Project Team
+SPDX-FileCopyrightText: 2025 e foundation (deviceconfig.proto schema)
+Licensed under Apache License 2.0; see microg-Apache-2.0.txt.
+Upstream project: https://github.com/microg/GmsCore
+
+Adapted references: AuthRequest.java, AuthResponse.java, AuthManager.java,
+HttpFormClient/CheckinClient, LoginActivity.java, ConsentSignInActivity.kt,
+auth/signin/extensions.kt, auth.proto, checkin.proto, deviceconfig.proto.
+
+Modifications: a private host-process content provider replaces the system
+authenticator. Account credentials use AndroidKeyStore encrypted storage.
+Virtual guest callers use the cloned APK's package and signing certificate.
+Only the authentication/check-in and consent subset is included. No separate
+microG installation is required, and this is not a complete GmsCore build.

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-42 -60 84 120">
+  <defs><linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#f0f6f4" stop-opacity=".7"/>
+    <stop offset=".43" stop-color="#3d5554" stop-opacity=".38"/>
+    <stop offset=".65" stop-color="#b3c9c5" stop-opacity=".15"/>
+    <stop offset="1" stop-color="#263f3d" stop-opacity=".55"/>
+  </linearGradient></defs>
+  <path id="leaf" d="M8,-55 C-8,-43 -31,-33 -32,-7 C-34,17 -15,43 -3,53 C17,40 31,17 29,-7 C27,-28 16,-43 8,-55Z"
+    fill="url(#glass)" stroke="#eaf5f1" stroke-opacity=".7" stroke-width=".85"/>
+  <path id="fold" d="M8,-55 C1,-28 7,-5 -3,53 C10,24 15,-13 8,-55Z" fill="#1d3737" fill-opacity=".14"/>
+  <path id="veins" d="M8,-51 C-2,-19 8,15 -3,53 M2,-30 C-7,-31 -14,-28 -20,-23 M1,-15 C11,-24 17,-23 21,-23 M1,-10 C-10,-13 -23,-8 -29,-3 M1,4 C11,-4 22,-3 28,-5 M0,13 C-10,8 -19,13 -23,17 M-1,25 C8,17 17,19 21,17 M-2,34 C-9,27 -13,31 -14,32"
+    fill="none" stroke="#e1ece8" stroke-opacity=".38" stroke-width=".6" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@id/toast_root" android:background="#ee0d0d0d" android:padding="12.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:minHeight="56.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:id="@id/toast_stripe" android:background="#ffcc2222" android:layout_width="4.0dip" android:layout_height="36.0dip" android:layout_marginEnd="12.0dip" />
+    <ImageView android:id="@id/toast_icon" android:layout_width="28.0dip" android:layout_height="28.0dip" android:src="@drawable/ic_warning_badge" android:contentDescription="Warning" android:layout_marginEnd="12.0dip" />
+    <TextView android:textSize="13.0sp" android:textColor="#ffffffff" android:id="@id/toast_message" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="Permission Required" android:layout_weight="1.0" android:lineSpacingMultiplier="1.2" android:fontFamily="sans-serif-medium" />
+</LinearLayout>

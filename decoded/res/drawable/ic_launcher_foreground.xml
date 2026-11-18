@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset android:insetLeft="17.999994%" android:insetRight="17.999994%" android:insetTop="17.999994%" android:insetBottom="17.999994%"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <bitmap android:gravity="fill" android:src="@drawable/venus_logo" />
+</inset>
