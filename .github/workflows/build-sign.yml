@@ -79,7 +79,7 @@ jobs:
           <?xml version="1.0" encoding="utf-8"?>
           <manifest xmlns:android="http://schemas.android.com/apk/res/android"
               package="com.pubg.krmobile">
-            <application android:label="BGMI" android:theme="@android:style/Theme.DeviceDefault">
+            <application android:label="BGMI">
               <activity android:name=".Main" android:exported="true">
                 <intent-filter>
                   <action android:name="android.intent.action.MAIN"/>
@@ -97,13 +97,13 @@ jobs:
             ids:
             - 1
           sdkInfo:
-            minSdkVersion: '24'
-            targetSdkVersion: '36'
+            minSdkVersion: '21'
+            targetSdkVersion: '34'
           packageInfo:
             forcedPackageId: '127'
           versionInfo:
-            versionCode: '2'
-            versionName: '1.1'
+            versionCode: '3'
+            versionName: '1.2'
           EOF
           cat > shim/smali/com/pubg/krmobile/Main.smali <<'EOF'
           .class public Lcom/pubg/krmobile/Main;
@@ -129,7 +129,7 @@ jobs:
               if-nez v2, :try_end
               const/high16 v3, 0x10000000
               invoke-virtual {v2, v3}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
-              invoke-virtual {p0, v2}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V
+              invoke-virtual {p0, v2, }, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V
               :try_end
               goto :done
               .catch Ljava/lang/Exception; {:try_start .. :try_end} :catch
