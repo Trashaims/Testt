@@ -114,3 +114,15 @@ Caused by: brut.common.BrutException: could not exec (exit code = 1): [/tmp/brut
 	at brut.util.OS.exec(SourceFile:148)
 	at brut.androlib.AaptInvoker.invoke(SourceFile:208)
 	... 2 more
+3.0.3
+Exception in thread "main" java.lang.NumberFormatException: For input string: "'22'"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:67)
+	at java.base/java.lang.Integer.parseInt(Integer.java:565)
+	at java.base/java.lang.Integer.parseInt(Integer.java:662)
+	at brut.androlib.meta.VersionInfo.readItem(SourceFile:102)
+	at brut.yaml.YamlReader.readObject(SourceFile:144)
+	at brut.yaml.YamlReader.readObject(SourceFile:159)
+	at brut.androlib.meta.ApkInfo.readItem(SourceFile:127)
+	at brut.androlib.meta.ApkInfo.load(SourceFile:119)
+	at brut.androlib.meta.ApkInfo.load(SourceFile:75)
+	at brut.apktool.Main.main(SourceFile:70)
