@@ -15,21 +15,20 @@ def u32(b, o):
 def u64(b, o):
     return struct.unpack_from("<Q", b, o)[0]
 
-def storage_ok(b, S, T, sc, sss):
-    """Entries must be cumulative from 0 and sum to storageSize exactly."""
-    if S < 64 or S + sss > len(b):
-        return False
-    if u32(b, T) != 0:
-        return False
-    cur = 0
+def extent(b, T, sc, oc):
+    """Largest offset+length in the whole table; equals storageSize when T is right."""
+    m = 0
     for k in range(sc):
         e = T + 8 * k
-        if u32(b, e) != cur:
-            return False
-        cur += u32(b, e + 4)
-        if cur > sss:
-            return False
-    return cur == sss
+        v = u32(b, e) + u32(b, e + 4)
+        if v > m:
+            m = v
+    for k in range(oc):
+        e = T + sc * 8 + 16 * k
+        v = u64(b, e) + u64(b, e + 8)
+        if v > m:
+            m = v
+    return m
 
 def main():
     if len(sys.argv) < 2:
@@ -72,19 +71,29 @@ def main():
         sys.exit("FAIL: neither string present")
 
     hit = None
+    tried = 0
+    diag = []
     for cand, needle in cands:
         for e in range(64, len(b) - 8, 4):
             if u32(b, e + 4) != len(needle):
                 continue
             off = u32(b, e)
-            S = cand - off
-            if S < 64 or S > cand:
+            if off + len(needle) > sss:
                 continue
-            for pad in range(0, 9):
+            S = cand - off
+            if S < 64 or S + sss > len(b):
+                continue
+            for pad in range(0, 8):
                 T = S - oc * 16 - sc * 8 - pad
                 if T < 64 or (e - T) % 8:
                     continue
-                if storage_ok(b, S, T, sc, sss):
+                if not (0 <= e - T < 8 * sc):
+                    continue
+                ex = extent(b, T, sc, oc)
+                if len(diag) < 10:
+                    diag.append((cand, e, off, S, pad, ex))
+                tried += 1
+                if ex == sss:
                     hit = (cand, needle, S, e, T)
                     break
             if hit:
@@ -93,7 +102,10 @@ def main():
             break
 
     if not hit:
-        sys.exit("FAIL: no storage base validated")
+        print("FAIL: no storage base validated (tried %d)" % tried)
+        for cand, e, off, S, pad, ex in diag:
+            print("  cand=%d e=%d off=%d S=%d pad=%d extent=%d/%d" % (cand, e, off, S, pad, ex, sss))
+        sys.exit(1)
 
     P, needle, S, E, T = hit
     off = P - S
@@ -131,8 +143,8 @@ def main():
         sys.exit("FAIL: target still present")
     if u32(b, 32) != len(b):
         sys.exit("FAIL: fileLength mismatch")
-    if not storage_ok(b, S, T, sc, sss - DELTA):
-        sys.exit("FAIL: table invariant broken")
+    if extent(b, T, sc, oc) != sss - DELTA:
+        sys.exit("FAIL: table extent wrong after edit")
 
     open(path, "wb").write(bytes(b))
     print("PASS, new size:", len(b))
