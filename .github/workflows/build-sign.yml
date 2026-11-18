@@ -27,6 +27,28 @@ jobs:
           cp "$ANDROID_HOME/platforms/android-35/android.jar" /tmp/fw/1.apk
           ls -la /tmp/fw | tee -a build.log
 
+      - name: Point Korea card at BGMI
+        run: |
+          python3 - <<'PY'
+          p = 'decoded/assets/index.android.bundle'
+          d = bytearray(open(p, 'rb').read())
+          old = b'com.pubg.krmobile'
+          new = b'com.pubg.imobile'
+          i = 0
+          n = 0
+          while True:
+              i = d.find(old, i)
+              if i < 0:
+                  break
+              v = int.from_bytes(d[i-4:i], 'little')
+              d[i-4:i] = ((v & 0xFF000000) | len(new)).to_bytes(4, 'little')
+              d[i:i+len(old)] = new + b'\x00\x00'
+              i += len(old)
+              n += 1
+          open(p, 'wb').write(d)
+          print('patched', n, 'occurrence(s)')
+          PY
+
       - name: Build
         run: |
           set -o pipefail
