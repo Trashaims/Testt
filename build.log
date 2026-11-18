@@ -158,3 +158,39 @@ Caused by: brut.common.BrutException: Execution failed (exit code = 1): [/tmp/aa
 	at brut.util.OS.exec(SourceFile:147)
 	at brut.androlib.res.AaptInvoker.invoke(SourceFile:183)
 	... 2 more
+3.0.3
+total 26468
+drwxr-xr-x  2 runner runner     4096 Nov 18 05:55 .
+drwxrwxrwt 13 root   root       4096 Nov 18 05:55 ..
+-rwxr-xr-x  1 runner runner 27092450 Nov 18 05:55 1.apk
+I: Using Apktool 3.0.3 on VENUS-HAX_2.2(Cracked) (1).apk with 4 threads
+I: Smaling smali folder into classes.dex...
+I: Building resources with aapt2...
+W: decoded/res/values-v34/colors.xml:3: error: resource android:color/bright_foreground_dark_disabled is private.
+W: decoded/res/values-v34/colors.xml:53: error: resource android:color/btn_default_material_dark is private.
+W: decoded/res/values-v34/colors.xml:54: error: resource android:color/btn_leanback_color is private.
+W: decoded/res/values-v34/colors.xml:4: error: resource android:color/accent_device_default_700 not found.
+W: decoded/res/values-v34/colors.xml:5: error: resource android:color/GM2_grey_800 is private.
+W: decoded/res/values-v34/colors.xml:6: error: resource android:color/accent_device_default_50 not found.
+W: decoded/res/values-v34/colors.xml:7: error: resource android:color/bright_foreground_dark_inverse is private.
+W: decoded/res/values-v34/colors.xml:55: error: resource android:color/btn_default_material_light is private.
+W: decoded/res/values-v34/colors.xml:56: error: resource android:color/btn_leanback_focused is private.
+W: decoded/res/values-v34/colors.xml:8: error: resource android:color/background_floating_device_default_light is private.
+W: decoded/res/values-v34/colors.xml:9: error: resource android:color/background_device_default_light is private.
+W: decoded/res/values-v34/colors.xml:10: error: resource android:color/background_holo_light is private.
+W: decoded/res/values-v34/colors.xml:11: error: resource android:color/background_floating_material_light is private.
+W: decoded/res/values-v34/colors.xml:12: error: resource android:color/bright_foreground_disabled_holo_light is private.
+W: decoded/res/values-v34/colors.xml:13: error: resource android:color/btn_colored_borderless_text_material is private.
+W: decoded/res/values-v34/colors.xml:14: error: resource android:color/bright_foreground_dark is private.
+W: decoded/res/values-v34/colors.xml:15: error: resource android:color/background_material_dark is private.
+W: decoded/res/values-v34/colors.xml:16: error: resource android:color/btn_colored_text_material is private.
+W: decoded/res/values-v34/colors.xml:17: error: resource android:color/car_blue_700 is private.
+W: decoded/res/values-v34/colors.xml:18: error: resource android:color/background_floating_device_default_dark is private.
+Exception in thread "main" brut.androlib.exceptions.AndrolibException: brut.common.BrutException: Execution failed (exit code = 1): [/tmp/aapt2_105134248201749936044490443521097563101.tmp, link, -o, /tmp/APKTOOL7389306769315704299.tmp, --manifest, decoded/AndroidManifest.xml, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-auto-version, --no-version-vectors, --no-version-transitions, --no-resource-deduping, --no-compile-sdk-metadata, --warn-manifest-validation, -I, /tmp/fw/1.apk, decoded/build/resources.zip]
+	at brut.androlib.res.AaptInvoker.invoke(SourceFile:186)
+	at brut.androlib.ApkBuilder.buildResources(SourceFile:357)
+	at brut.apktool.Main.main(SourceFile:92)
+Caused by: brut.common.BrutException: Execution failed (exit code = 1): [/tmp/aapt2_105134248201749936044490443521097563101.tmp, link, -o, /tmp/APKTOOL7389306769315704299.tmp, --manifest, decoded/AndroidManifest.xml, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-auto-version, --no-version-vectors, --no-version-transitions, --no-resource-deduping, --no-compile-sdk-metadata, --warn-manifest-validation, -I, /tmp/fw/1.apk, decoded/build/resources.zip]
+	at brut.util.OS.exec(SourceFile:147)
+	at brut.androlib.res.AaptInvoker.invoke(SourceFile:183)
+	... 2 more
