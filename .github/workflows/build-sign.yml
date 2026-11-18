@@ -3,6 +3,9 @@ name: build-sign
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,12 +16,29 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq apktool
+          {
+            echo "=== apktool ==="; apktool --version
+            echo "=== java ==="; java -version 2>&1
+            echo "=== decoded ==="; ls -la decoded
+            echo "=== decoded/res/values ==="; ls -la decoded/res/values
+          } 2>&1 | tee -a build.log
 
       - name: Drop unknown dir
         run: rm -rf decoded/unknown
 
       - name: Build
-        run: apktool b decoded -o unsigned.apk
+        run: |
+          set -o pipefail
+          apktool b decoded -o unsigned.apk 2>&1 | tee -a build.log
+
+      - name: Commit log
+        if: always()
+        run: |
+          git config user.name "gha"
+          git config user.email "gha@users.noreply.github.com"
+          git add -f build.log
+          git commit -m "build log" || true
+          git push || true
 
       - name: Align
         run: |
@@ -34,6 +54,7 @@ jobs:
             --out venus-bgmi-signed.apk aligned.apk
 
       - name: Upload
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: venus-bgmi
