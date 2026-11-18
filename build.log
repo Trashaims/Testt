@@ -1,0 +1,82 @@
+=== apktool ===
+2.7.0-dirty
+=== java ===
+openjdk version "25.0.5" 2026-10-20 LTS
+OpenJDK Runtime Environment Temurin-25.0.5+8 (build 25.0.5+8-LTS)
+OpenJDK 64-Bit Server VM Temurin-25.0.5+8 (build 25.0.5+8-LTS, mixed mode, sharing)
+=== decoded ===
+total 96
+drwxr-xr-x   9 runner runner  4096 Nov 18 05:40 .
+drwxr-xr-x   7 runner runner  4096 Nov 18 05:41 ..
+-rw-r--r--   1 runner runner 55811 Nov 18 05:40 AndroidManifest.xml
+-rw-r--r--   1 runner runner   752 Nov 18 05:40 apktool.yml
+drwxr-xr-x   5 runner runner  4096 Nov 18 05:40 assets
+drwxr-xr-x   9 runner runner  4096 Nov 18 05:40 kotlin
+drwxr-xr-x   3 runner runner  4096 Nov 18 05:40 lib
+drwxr-xr-x   3 runner runner  4096 Nov 18 05:40 original
+drwxr-xr-x 140 runner runner  4096 Nov 18 05:40 res
+drwxr-xr-x   3 runner runner  4096 Nov 18 05:40 smali
+drwxr-xr-x   3 runner runner  4096 Nov 18 05:40 unknown
+=== decoded/res/values ===
+total 968
+drwxr-xr-x   2 runner runner   4096 Nov 18 05:40 .
+drwxr-xr-x 140 runner runner   4096 Nov 18 05:40 ..
+-rw-r--r--   1 runner runner   4357 Nov 18 05:40 arrays.xml
+-rw-r--r--   1 runner runner 101818 Nov 18 05:40 attrs.xml
+-rw-r--r--   1 runner runner    119 Nov 18 05:40 bools.xml
+-rw-r--r--   1 runner runner  14493 Nov 18 05:40 colors.xml
+-rw-r--r--   1 runner runner  49257 Nov 18 05:40 dimens.xml
+-rw-r--r--   1 runner runner    505 Nov 18 05:40 drawables.xml
+-rw-r--r--   1 runner runner  19904 Nov 18 05:40 ids.xml
+-rw-r--r--   1 runner runner   3899 Nov 18 05:40 integers.xml
+-rw-r--r--   1 runner runner 365763 Nov 18 05:40 public.xml
+-rw-r--r--   1 runner runner  14427 Nov 18 05:40 strings.xml
+-rw-r--r--   1 runner runner 381693 Nov 18 05:40 styles.xml
+I: Using Apktool 2.7.0-dirty
+I: Checking whether sources has changed...
+I: Smaling smali folder into classes.dex...
+I: Checking whether resources has changed...
+I: Building resources...
+W: aapt: brut.common.BrutException: brut.common.BrutException: Could not extract resource: /prebuilt/linux/aapt_64 (defaulting to $PATH binary)
+W: res/drawable/$avd_hide_password__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$avd_hide_password__1.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$avd_hide_password__2.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$avd_show_password__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$avd_show_password__1.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$avd_show_password__2.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$bg_btn_premium_shape__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$m3_avd_hide_password__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$m3_avd_hide_password__1.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$m3_avd_hide_password__2.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$m3_avd_show_password__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$m3_avd_show_password__1.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$m3_avd_show_password__2.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_checked_unchecked__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_checked_unchecked__1.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_checked_unchecked__2.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_checked_indeterminate__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_checked_unchecked__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_checked_unchecked__1.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_checked_unchecked__2.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_indeterminate_checked__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_indeterminate_unchecked__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_indeterminate_unchecked__1.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_indeterminate_unchecked__2.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_unchecked_checked__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_unchecked_checked__1.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_unchecked_checked__2.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_unchecked_indeterminate__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_unchecked_indeterminate__1.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_icon_unchecked_indeterminate__2.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_unchecked_checked__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_unchecked_checked__1.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_checkbox_button_unchecked_checked__2.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_switch_thumb_checked_pressed__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_switch_thumb_checked_unchecked__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_switch_thumb_checked_unchecked__1.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_switch_thumb_pressed_checked__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_switch_thumb_pressed_unchecked__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_switch_thumb_unchecked_checked__0.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_switch_thumb_unchecked_checked__1.xml: Invalid file name: must contain only [a-z0-9_.]
+W: res/drawable/$mtrl_switch_thumb_unchecked_pressed__0.xml: Invalid file name: must contain only [a-z0-9_.]
+brut.androlib.AndrolibException: brut.common.BrutException: could not exec (exit code = 1): [aapt, p, --min-sdk-version, 24, --target-sdk-version, 35, --version-code, 22, --version-name, 2.2, --no-version-vectors, -F, /tmp/APKTOOL14444648518082100492.tmp, -0, resources.arsc, -0, assets/index.android.bundle, -0, jpg, -0, assets/dexopt/baseline.prof, -0, assets/dexopt/baseline.profm, -0, png, -0, arsc, -I, /home/runner/.local/share/apktool/framework/1.apk, -S, /home/runner/work/Testt/Testt/decoded/res, -M, /home/runner/work/Testt/Testt/decoded/AndroidManifest.xml]
