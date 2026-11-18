@@ -174,6 +174,8 @@ jobs:
           apksigner sign --ks keystore.jks --ks-key-alias bgmi --ks-pass "pass:$P" --key-pass "pass:$P" --out signed.apk aligned.apk 2>&1 | tee -a build.log
           zipalign -p -f 4 shim-u.apk shim-al.apk 2>&1 | tee -a build.log
           apksigner sign --ks keystore.jks --ks-key-alias bgmi --ks-pass "pass:$P" --key-pass "pass:$P" --out shim.apk shim-al.apk 2>&1 | tee -a build.log
+          unzip -l shim.apk 2>&1 | tee -a build.log
+          apksigner verify --verbose --print-certs shim.apk 2>&1 | tee -a build.log
           exit ${PIPESTATUS[0]}
 
       - name: Commit
