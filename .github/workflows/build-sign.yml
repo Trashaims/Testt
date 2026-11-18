@@ -12,16 +12,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Tools
+      - name: Get apktool
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq apktool
-          {
-            echo "=== apktool ==="; apktool --version
-            echo "=== java ==="; java -version 2>&1
-            echo "=== decoded ==="; ls -la decoded
-            echo "=== decoded/res/values ==="; ls -la decoded/res/values
-          } 2>&1 | tee -a build.log
+          curl -sSL -o apktool.jar https://github.com/iBotPeaches/Apktool/releases/download/v2.12.1/apktool_2.12.1.jar
+          java -jar apktool.jar --version 2>&1 | tee -a build.log
 
       - name: Drop unknown dir
         run: rm -rf decoded/unknown
@@ -29,7 +23,7 @@ jobs:
       - name: Build
         run: |
           set -o pipefail
-          apktool b decoded -o unsigned.apk 2>&1 | tee -a build.log
+          java -jar apktool.jar b decoded -o unsigned.apk 2>&1 | tee -a build.log
 
       - name: Commit log
         if: always()
