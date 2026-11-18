@@ -13,16 +13,11 @@ def u32(b, o):
 def u64(b, o):
     return struct.unpack_from("<Q", b, o)[0]
 
-def extent(b, T, sc, oc):
+def extent(b, T, sc):
     m = 0
     for k in range(sc):
         e = T + 8 * k
         v = u32(b, e) + u32(b, e + 4)
-        if v > m:
-            m = v
-    for k in range(oc):
-        e = T + sc * 8 + 16 * k
-        v = u64(b, e) + u64(b, e + 8)
         if v > m:
             m = v
     return m
@@ -81,18 +76,16 @@ def main():
     hit = None
     shown = 0
     for T in tables:
-        if T + 8 * sc + oc * 16 > len(b):
+        if T + 8 * sc > len(b):
             continue
-        ex = extent(b, T, sc, oc)
+        ex = extent(b, T, sc)
         if shown < 8:
-            print("  T=%d extent=%d/%d base=%d" % (T, ex, sss, T + oc * 16 + sc * 8))
+            print("  T=%d extent=%d/%d" % (T, ex, sss))
             shown += 1
         if ex != sss:
             continue
-        base = T + oc * 16 + sc * 8
-        for pad in range(0, 9):
-            S = base + pad
-            if S + sss > len(b):
+        for S in [T - sss - p for p in range(0, 9)] + [T + oc * 16 + sc * 8 + p for p in range(0, 9)]:
+            if S < 64 or S + sss > len(b):
                 continue
             for needle in (TARGET, REPL):
                 cand = b.find(needle)
@@ -154,7 +147,7 @@ def main():
         sys.exit("FAIL: target still present")
     if u32(b, 32) != len(b):
         sys.exit("FAIL: fileLength mismatch")
-    if extent(b, T, sc, oc) != sss - DELTA:
+    if extent(b, T, sc) != sss - DELTA:
         sys.exit("FAIL: extent wrong after edit")
 
     open(path, "wb").write(bytes(b))
