@@ -2,6 +2,10 @@ name: build-sign
 
 on:
   workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - 'build.log'
 
 permissions:
   contents: write
@@ -11,76 +15,79 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install tools
+        run: |
+          echo "== build start ==" > build.log
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq zipalign apksigner unzip wget 2>&1 | tee -a build.log
 
       - name: Get apktool
         run: |
-          curl -sSL -o apktool.jar https://github.com/iBotPeaches/Apktool/releases/download/v2.10.0/apktool_2.10.0.jar
-          java -jar apktool.jar --version 2>&1 | tee -a build.log
+          wget -q https://github.com/iBotPeaches/Apktool/releases/download/v2.10.0/apktool_2.10.0.jar -O /tmp/apktool.jar 2>&1 | tee -a build.log
+          ls -l /tmp/apktool.jar 2>&1 | tee -a build.log
+          exit ${PIPESTATUS[0]}
 
-      - name: Framework
+      - name: Get framework
         run: |
-          set -o pipefail
+          wget -q https://dl.google.com/android/repository/platform-35_r01.zip -O /tmp/p35.zip 2>&1 | tee -a build.log
+          unzip -o -j /tmp/p35.zip 'android-35/android.jar' -d /tmp 2>&1 | tee -a build.log
           mkdir -p /tmp/fw
-          if [ ! -f "$ANDROID_HOME/platforms/android-35/android.jar" ]; then
-            yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" 2>&1 | tail -5
-          fi
-          cp "$ANDROID_HOME/platforms/android-35/android.jar" /tmp/fw/1.apk
-          ls -la /tmp/fw | tee -a build.log
-
-      - name: Point Korea card at BGMI
-        run: |
-          python3 - <<'PY'
-          p = 'decoded/assets/index.android.bundle'
-          d = bytearray(open(p, 'rb').read())
-          old = b'com.pubg.krmobile'
-          new = b'com.pubg.imobile'
-          i = 0
-          n = 0
-          while True:
-              i = d.find(old, i)
-              if i < 0:
-                  break
-              v = int.from_bytes(d[i-4:i], 'little')
-              d[i-4:i] = ((v & 0xFF000000) | len(new)).to_bytes(4, 'little')
-              d[i:i+len(old)] = new + b'\x00\x00'
-              i += len(old)
-              n += 1
-          open(p, 'wb').write(d)
-          print('patched', n, 'occurrence(s)')
-          PY
+          cp /tmp/android.jar /tmp/fw/1.apk
+          ls -l /tmp/fw 2>&1 | tee -a build.log
+          exit ${PIPESTATUS[0]}
 
       - name: Build
         run: |
-          set -o pipefail
-          java -jar apktool.jar b -p /tmp/fw decoded -o unsigned.apk 2>&1 | tee -a build.log
+          java -jar /tmp/apktool.jar b decoded -p /tmp/fw -o unsigned.apk 2>&1 | tee -a build.log
+          exit ${PIPESTATUS[0]}
 
-      - name: Commit log
-        if: always()
+      - name: Patch bundle
         run: |
-          git config user.name "gha"
-          git config user.email "gha@users.noreply.github.com"
-          git add -f build.log
-          git commit -m "build log" || true
-          git push || true
+          python3 patch_bundle.py decoded/assets/index.android.bundle 2>&1 | tee -a build.log
+          exit ${PIPESTATUS[0]}
 
       - name: Align
         run: |
-          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
-          "$BT/zipalign" -p -f 4 unsigned.apk aligned.apk
+          zipalign -p -f 4 unsigned.apk aligned.apk 2>&1 | tee -a build.log
+          exit ${PIPESTATUS[0]}
 
       - name: Sign
+        env:
+          KS_PASS: ${{ secrets.KS_PASS }}
         run: |
-          keytool -genkeypair -keystore ks.jks -storepass android -keypass android \
-            -alias k -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=venus"
-          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
-          "$BT/apksigner" sign --ks ks.jks --ks-pass pass:android --key-pass pass:android \
-            --out venus-bgmi-signed.apk aligned.apk
+          P="${KS_PASS:-venice123}"
+          if [ ! -f keystore.jks ]; then
+            keytool -genkeypair -v -keystore keystore.jks -alias bgmi \
+              -keyalg RSA -keysize 2048 -validity 10000 \
+              -storepass "$P" -keypass "$P" -dname "CN=bgmi" 2>&1 | tee -a build.log
+          fi
+          apksigner sign --ks keystore.jks --ks-key-alias bgmi \
+            --ks-pass "pass:$P" --key-pass "pass:$P" \
+            --out signed.apk aligned.apk 2>&1 | tee -a build.log
+          exit ${PIPESTATUS[0]}
 
-      - name: Commit apk
+      - name: Commit
         if: always()
         run: |
-          git config user.name "gha"
-          git config user.email "gha@users.noreply.github.com"
-          git add -f venus-bgmi-signed.apk
-          git commit -m "signed apk" || true
-          git push || true
+          git config user.name "ci"
+          git config user.email "ci@local"
+          git add -A
+          git commit -m "build $(date -u +%FT%TZ)" || echo "nothing to commit"
+          git push || echo "push failed"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: output
+          path: |
+            signed.apk
+            build.log
