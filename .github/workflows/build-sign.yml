@@ -14,7 +14,7 @@ jobs:
 
       - name: Get apktool
         run: |
-          curl -sSL -o apktool.jar https://github.com/iBotPeaches/Apktool/releases/download/v2.12.1/apktool_2.12.1.jar
+          curl -sSL -o apktool.jar curl -sSL -o apktool.jar https://github.com/iBotPeaches/Apktool/releases/download/v3.0.3/apktool_3.0.3.jar
           java -jar apktool.jar --version 2>&1 | tee -a build.log
 
       - name: Drop unknown dir
