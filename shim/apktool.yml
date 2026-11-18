@@ -5,8 +5,8 @@ usesFramework:
   ids:
   - 1
 sdkInfo:
-  minSdkVersion: '21'
-  targetSdkVersion: '34'
+  minSdkVersion: '24'
+  targetSdkVersion: '36'
 packageInfo:
   forcedPackageId: '127'
 versionInfo:
