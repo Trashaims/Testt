@@ -33,8 +33,7 @@ jobs:
 
       - name: Get apktool
         run: |
-          wget -q https://github.com/iBotPeaches/Apktool/releases/download/v2.10.0/apktool_2.10.0.jar -O /tmp/apktool.jar 2>&1 | tee -a build.log
-          ls -l /tmp/apktool.jar 2>&1 | tee -a build.log
+          wget -q https://github.com/iBotPeaches/Apktool/releases/download/v2.10.0/apktool_2.10.0.jar -O /tmp/apktool.jar
           exit ${PIPESTATUS[0]}
 
       - name: Get framework
@@ -43,30 +42,88 @@ jobs:
           unzip -o -j /tmp/p35.zip 'android-35/android.jar' -d /tmp 2>&1 | tee -a build.log
           mkdir -p /tmp/fw
           cp /tmp/android.jar /tmp/fw/1.apk
-          ls -l /tmp/fw 2>&1 | tee -a build.log
           exit ${PIPESTATUS[0]}
 
       - name: Restore pristine bundle
-        run: |
-          git checkout 12efa3bfd8b8a42d4dce517ac3242172dda52483 -- decoded/assets/index.android.bundle 2>&1 | tee -a build.log || echo "restore failed, using working copy" | tee -a build.log
-          ls -l decoded/assets/index.android.bundle 2>&1 | tee -a build.log
+        run: git checkout 12efa3bfd8b8a42d4dce517ac3242172dda52483 -- decoded/assets/index.android.bundle || echo "restore failed"
 
-      - name: Build
+      - name: Build container
         run: |
           java -jar /tmp/apktool.jar b decoded -p /tmp/fw -o unsigned.apk 2>&1 | tee -a build.log
           exit ${PIPESTATUS[0]}
 
       - name: Patch bundle
+        continue-on-error: true
         run: |
           python3 patch_bundle.py decoded/assets/index.android.bundle 2>&1 | tee -a build.log
-          exit ${PIPESTATUS[0]}
 
-      - name: Align
+      - name: Write shim
         run: |
-          zipalign -p -f 4 unsigned.apk aligned.apk 2>&1 | tee -a build.log
+          mkdir -p shim/smali/com/pubg/krmobile
+          cat > shim/AndroidManifest.xml <<'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+              package="com.pubg.krmobile">
+            <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="34"/>
+            <application android:label="BGMI">
+              <activity android:name=".Main" android:exported="true">
+                <intent-filter>
+                  <action android:name="android.intent.action.MAIN"/>
+                  <category android:name="android.intent.category.LAUNCHER"/>
+                </intent-filter>
+              </activity>
+            </application>
+          </manifest>
+          EOF
+          cat > shim/apktool.yml <<'EOF'
+          version: 2.10.0
+          apkFileName: shim.apk
+          isFrameworkApk: false
+          usesFramework:
+            ids:
+            - 1
+          sdkInfo:
+            minSdkVersion: '21'
+            targetSdkVersion: '34'
+          packageInfo:
+            forcedPackageId: '127'
+          versionInfo:
+            versionCode: '1'
+            versionName: '1.0'
+          EOF
+          cat > shim/smali/com/pubg/krmobile/Main.smali <<'EOF'
+          .class public Lcom/pubg/krmobile/Main;
+          .super Landroid/app/Activity;
+          .source "Main.java"
+
+          .method public constructor <init>()V
+              .locals 0
+              invoke-direct {p0}, Landroid/app/Activity;-><init>()V
+              return-void
+          .end method
+
+          .method protected onCreate(Landroid/os/Bundle;)V
+              .locals 3
+              invoke-super {p0, p1}, Landroid/app/Activity;->onCreate(Landroid/os/Bundle;)V
+              invoke-virtual {p0}, Landroid/app/Activity;->getPackageManager()Landroid/content/pm/PackageManager;
+              move-result-object v0
+              const-string v1, "com.pubg.imobile"
+              invoke-virtual {v0, v1}, Landroid/content/pm/PackageManager;->getLaunchIntentForPackage(Ljava/lang/String;)Landroid/content/Intent;
+              move-result-object v2
+              if-eqz v2, :done
+              invoke-virtual {p0, v2}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V
+              :done
+              invoke-virtual {p0}, Landroid/app/Activity;->finish()V
+              return-void
+          .end method
+          EOF
+
+      - name: Build shim
+        run: |
+          java -jar /tmp/apktool.jar b shim -p /tmp/fw -o shim-u.apk 2>&1 | tee -a build.log
           exit ${PIPESTATUS[0]}
 
-      - name: Sign
+      - name: Align and sign
         env:
           KS_PASS: ${{ secrets.KS_PASS }}
         run: |
@@ -76,9 +133,10 @@ jobs:
               -keyalg RSA -keysize 2048 -validity 10000 \
               -storepass "$P" -keypass "$P" -dname "CN=bgmi" 2>&1 | tee -a build.log
           fi
-          apksigner sign --ks keystore.jks --ks-key-alias bgmi \
-            --ks-pass "pass:$P" --key-pass "pass:$P" \
-            --out signed.apk aligned.apk 2>&1 | tee -a build.log
+          zipalign -p -f 4 unsigned.apk aligned.apk 2>&1 | tee -a build.log
+          apksigner sign --ks keystore.jks --ks-key-alias bgmi --ks-pass "pass:$P" --key-pass "pass:$P" --out signed.apk aligned.apk 2>&1 | tee -a build.log
+          zipalign -p -f 4 shim-u.apk shim-al.apk 2>&1 | tee -a build.log
+          apksigner sign --ks keystore.jks --ks-key-alias bgmi --ks-pass "pass:$P" --key-pass "pass:$P" --out shim.apk shim-al.apk 2>&1 | tee -a build.log
           exit ${PIPESTATUS[0]}
 
       - name: Commit
@@ -96,4 +154,5 @@ jobs:
           name: output
           path: |
             signed.apk
+            shim.apk
             build.log
