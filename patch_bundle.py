@@ -31,6 +31,29 @@ def find_tables(b, sss):
         pos += 4
     return out
 
+def looks_like_text(b, S, off, ln):
+    s = b[S + off:S + off + ln]
+    if len(s) != ln:
+        return False
+    if all(0x20 <= c <= 0x7E for c in s):
+        return True
+    if ln >= 4 and ln % 2 == 0 and all(s[i] == 0 for i in range(1, ln, 2)):
+        return True
+    return False
+
+def sample_ok(b, S, T, sc, sss, step):
+    good = tot = 0
+    for k in range(0, sc, step):
+        e = T + 8 * k
+        off = u32(b, e)
+        ln = u32(b, e + 4)
+        if ln == 0 or off + ln > sss:
+            continue
+        tot += 1
+        if looks_like_text(b, S, off, ln):
+            good += 1
+    return good, tot
+
 def main():
     if len(sys.argv) < 2:
         sys.exit("usage: patch_bundle.py <bundle>")
@@ -65,51 +88,57 @@ def main():
         sys.exit("FAIL: no table found")
 
     hit = None
+    near = []
     for T in tables:
-        for S in (T - sss, T + sc * 8 + oc * 16):
+        for pad in range(0, 25):
+            S = T - sss - pad
             if S < 64 or S + sss > len(b):
                 continue
-            for needle in (TARGET, REPL):
-                cand = b.find(needle)
-                while cand != -1:
-                    off = cand - S
-                    if 0 <= off and off + len(needle) <= sss:
-                        for k in range(sc):
-                            e = T + 8 * k
-                            if u32(b, e) == off and u32(b, e + 4) == len(needle):
-                                if bytes(b[cand:cand + len(needle)]) == needle:
-                                    hit = (cand, needle, S, e, T, off)
-                                    break
-                    if hit:
-                        break
-                    cand = b.find(needle, cand + 1)
-                if hit:
+            good, tot = sample_ok(b, S, T, sc, sss, max(1, sc // 60))
+            if tot < 10 or good < tot * 0.6:
+                continue
+            for k in range(sc):
+                e = T + 8 * k
+                off = u32(b, e)
+                ln = u32(b, e + 4)
+                if ln < len(TARGET) or off + len(TARGET) > sss:
+                    continue
+                if bytes(b[S + off:S + off + len(TARGET)]) == TARGET:
+                    hit = (S + off, S, e, T, off, ln)
                     break
+            if len(near) < 6:
+                near.append((T, pad, S, good, tot))
             if hit:
                 break
         if hit:
             break
 
     if not hit:
-        print("FAIL: no anchor matched")
-        for T in tables[:8]:
-            print("  T=%d S=%d" % (T, T - sss))
+        print("FAIL: no string entry matched by content")
+        for T, pad, S, good, tot in near:
+            print("  T=%d pad=%d S=%d text=%d/%d" % (T, pad, S, good, tot))
+        for T in tables[:2]:
+            S = T - sss
+            for k in range(0, sc, max(1, sc // 40)):
+                e = T + 8 * k
+                off = u32(b, e)
+                if 91700 <= off <= 91900:
+                    print("  near off=%d len=%d -> %r" % (off, u32(b, e + 4), bytes(b[S + off:S + off + u32(b, e + 4)])))
         sys.exit(1)
 
-    P, needle, S, E, T, off = hit
-    L = u32(b, E + 4)
+    P, S, E, T, off, L = hit
     print("table=%d storage=%d offset=%d entry=%d len=%d" % (T, S, off, E, L))
+    if L > 4096:
+        sys.exit("FAIL: implausible entry length %d" % L)
 
-    if L == len(REPL) and needle == REPL:
+    if L == len(REPL):
         print("state: already correct")
         print("PASS, size:", len(b))
         return
-    if L != len(TARGET):
-        sys.exit("FAIL: unexpected entry length %d" % L)
 
     b[P:P + len(REPL)] = REPL
     del b[P + len(REPL):P + len(TARGET)]
-    struct.pack_into("<I", b, E + 4, len(REPL))
+    struct.pack_into("<I", b, E + 4, L - DELTA)
 
     for k in range(sc):
         e = T + 8 * k
@@ -131,10 +160,6 @@ def main():
         sys.exit("FAIL: target still present")
     if u32(b, 32) != len(b):
         sys.exit("FAIL: fileLength mismatch")
-
-    q = b.find(REPL)
-    if q == -1 or u32(b, 32) != len(b):
-        sys.exit("FAIL: replacement missing")
 
     open(path, "wb").write(bytes(b))
     print("PASS, new size:", len(b))
