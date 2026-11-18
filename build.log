@@ -60,7 +60,8 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Archive:  /tmp/p35.zip
   inflating: /tmp/android.jar        
 total 26460
--rw-r--r-- 1 runner runner 27092450 Nov 18 06:31 1.apk
+-rw-r--r-- 1 runner runner 27092450 Nov 18 06:35 1.apk
+-rw-r--r-- 1 runner runner 1062064 Nov 18 06:35 decoded/assets/index.android.bundle
 I: Using Apktool 2.10.0 with 4 thread(s).
 I: Checking whether sources has changed...
 I: Smaling smali folder into classes.dex...
@@ -71,7 +72,7 @@ I: Copying libs... (/kotlin)
 I: Building apk file...
 I: Copying unknown files/dir...
 I: Built apk into: unsigned.apk
-size: 1062063
+size: 1062064
 magic: c61fbc03c103191f
 hermes version: 96
 stringCount: 6866 overflowCount: 9 storageSize: 100424
