@@ -56,6 +56,7 @@ No containers need to be restarted.
 No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
+-rw-r--r-- 1 runner runner 24352463 Sep 17  2024 /tmp/apktool.jar
 Archive:  /tmp/p35.zip
   inflating: /tmp/android.jar        
 I: Using Apktool 2.10.0 with 4 thread(s).
