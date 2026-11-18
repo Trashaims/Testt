@@ -1,0 +1,40 @@
+name: build-sign
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq apktool
+
+      - name: Drop unknown dir
+        run: rm -rf decoded/unknown
+
+      - name: Build
+        run: apktool b decoded -o unsigned.apk
+
+      - name: Align
+        run: |
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          "$BT/zipalign" -p -f 4 unsigned.apk aligned.apk
+
+      - name: Sign
+        run: |
+          keytool -genkeypair -keystore ks.jks -storepass android -keypass android \
+            -alias k -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=venus"
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          "$BT/apksigner" sign --ks ks.jks --ks-pass pass:android --key-pass pass:android \
+            --out venus-bgmi-signed.apk aligned.apk
+
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: venus-bgmi
+          path: venus-bgmi-signed.apk
