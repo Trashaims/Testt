@@ -60,8 +60,8 @@ No VM guests are running outdated hypervisor (qemu) binaries on this host.
 Archive:  /tmp/p35.zip
   inflating: /tmp/android.jar        
 total 26460
--rw-r--r-- 1 runner runner 27092450 Nov 18 16:01 1.apk
--rw-r--r-- 1 runner runner 1062064 Nov 18 16:00 decoded/assets/index.android.bundle
+-rw-r--r-- 1 runner runner 27092450 Nov 18 16:02 1.apk
+-rw-r--r-- 1 runner runner 1062064 Nov 18 16:02 decoded/assets/index.android.bundle
 I: Using Apktool 2.10.0 with 4 thread(s).
 I: Checking whether sources has changed...
 I: Smaling smali folder into classes.dex...
@@ -76,12 +76,12 @@ size: 1062064
 magic: c61fbc03c103191f
 stringCount: 6866 overflowCount: 9 storageSize: 100424
 table candidates: 45 [240636, 258780, 259124, 259132, 259140, 259148, 259156, 259164]
-  T=240636 extent=13402940094273367045/100424 base=295708
-  T=258780 extent=23030568504634643605/100424 base=313852
-  T=259124 extent=18501765860376843471/100424 base=314196
-  T=259132 extent=18807886387301454848/100424 base=314204
-  T=259140 extent=18501765860376843471/100424 base=314212
-  T=259148 extent=18807886387301454848/100424 base=314220
-  T=259156 extent=18501765860376843471/100424 base=314228
-  T=259164 extent=18807886387301454848/100424 base=314236
+  T=240636 extent=8589934590/100424
+  T=258780 extent=8489336831/100424
+  T=259124 extent=8489336831/100424
+  T=259132 extent=8489336831/100424
+  T=259140 extent=8489336831/100424
+  T=259148 extent=8489336831/100424
+  T=259156 extent=8489336831/100424
+  T=259164 extent=8489336831/100424
 FAIL: no table/entry matched
