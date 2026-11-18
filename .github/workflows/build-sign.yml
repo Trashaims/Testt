@@ -27,9 +27,6 @@ jobs:
           cp "$ANDROID_HOME/platforms/android-35/android.jar" /tmp/fw/1.apk
           ls -la /tmp/fw | tee -a build.log
 
-      - name: Drop unknown dir
-        run: rm -rf decoded/unknown
-
       - name: Build
         run: |
           set -o pipefail
