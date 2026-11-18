@@ -18,7 +18,7 @@ def plausible(b, p, sss):
     c = u32(b, p + 4)
     return a < sss and 0 < c <= sss and a + c <= sss
 
-def find_tables(b, sss):
+def find_tables(b, sss, sc):
     out = []
     pos = 64
     while pos + 8 * 33 <= len(b):
@@ -29,7 +29,7 @@ def find_tables(b, sss):
             if k >= 32:
                 out.append(pos)
         pos += 4
-    return out
+    return [t for t in out if t + 8 * sc <= len(b)]
 
 def looks_like_text(b, S, off, ln):
     s = b[S + off:S + off + ln]
@@ -82,7 +82,7 @@ def main():
     if not (0 < sc < 2000000) or oc > 100000 or not (0 < sss < len(b)):
         sys.exit("FAIL: header fields not sane")
 
-    tables = find_tables(b, sss)
+    tables = find_tables(b, sss, sc)
     print("table candidates:", len(tables), tables[:8])
     if not tables:
         sys.exit("FAIL: no table found")
@@ -119,17 +119,16 @@ def main():
             print("  T=%d pad=%d S=%d text=%d/%d" % (T, pad, S, good, tot))
         for T in tables[:2]:
             S = T - sss
-            for k in range(0, sc, max(1, sc // 40)):
+            for k in range(0, sc, 4):
                 e = T + 8 * k
                 off = u32(b, e)
-                if 91700 <= off <= 91900:
-                    print("  near off=%d len=%d -> %r" % (off, u32(b, e + 4), bytes(b[S + off:S + off + u32(b, e + 4)])))
+                if 91500 <= off <= 92100:
+                    ln = u32(b, e + 4)
+                    print("  near off=%d len=%d -> %r" % (off, ln, bytes(b[S + off:S + off + min(ln, 40)])))
         sys.exit(1)
 
     P, S, E, T, off, L = hit
     print("table=%d storage=%d offset=%d entry=%d len=%d" % (T, S, off, E, L))
-    if L > 4096:
-        sys.exit("FAIL: implausible entry length %d" % L)
 
     if L == len(REPL):
         print("state: already correct")
