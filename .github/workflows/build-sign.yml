@@ -129,7 +129,7 @@ jobs:
               if-nez v2, :try_end
               const/high16 v3, 0x10000000
               invoke-virtual {v2, v3}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
-              invoke-virtual {p0, v2, }, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V
+              invoke-virtual {p0, v2}, Landroid/app/Activity;->startActivity(Landroid/content/Intent;)V
               :try_end
               goto :done
               .catch Ljava/lang/Exception; {:try_start .. :try_end} :catch
