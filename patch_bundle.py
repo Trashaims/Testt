@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # Repoint the container's KOREA card from com.pubg.krmobile to com.pubg.imobile
 # by rewriting the Hermes string table entry with full offset fixup.
+# Handles both a pristine bundle and one already damaged by a naive byte replace.
 import os, struct, sys
 
 TARGET = b"com.pubg.krmobile"
 REPL   = b"com.pubg.imobile"
 DELTA  = len(TARGET) - len(REPL)
-MAGIC  = bytes.fromhex("3fbc1fc6")
+MAGIC  = bytes.fromhex("c61fbc03")
 
 def u32(b, o):
     return struct.unpack_from("<I", b, o)[0]
@@ -50,6 +51,34 @@ def score(b, s, entries):
             pass
     return ok, len(entries)
 
+def locate(b, sc, oc):
+    """Return (P, S, T, E) for the first string that decodes to TARGET or REPL."""
+    for needle in (TARGET, REPL):
+        cand = b.find(needle)
+        while cand != -1:
+            for p in (1, 4, 0):
+                if p and b[cand - p:cand] != (uleb(len(needle)) if p == 1 else struct.pack("<I", len(needle))):
+                    continue
+                for e in range(64, len(b) - 8, 4):
+                    if u32(b, e + 4) != len(needle):
+                        continue
+                    off = u32(b, e)
+                    s = cand - off - p
+                    if s < 0 or s > cand:
+                        continue
+                    for pad in range(0, 9):
+                        t = s - oc * 16 - sc * 8 - pad
+                        if t < 64 or not (t <= e < t + sc * 8):
+                            continue
+                        stride = max(1, sc // 400)
+                        entries = [(u32(b, t + 8 * k), u32(b, t + 8 * k + 4))
+                                   for k in range(0, sc, stride)]
+                        ok, tot = score(b, s, entries)
+                        if tot and ok >= tot * 0.95:
+                            return cand, s, t, e, p
+            cand = b.find(needle, cand + 1)
+    return None
+
 def main():
     if len(sys.argv) < 2:
         sys.exit("usage: patch_bundle.py <bundle>")
@@ -62,8 +91,9 @@ def main():
     print("magic:", bytes(b[:8]).hex())
 
     if bytes(b[:4]) != MAGIC:
+        print("unknown magic, plain replace")
         n = b.count(TARGET)
-        print("plain js bundle, occurrences:", n)
+        print("occurrences:", n)
         if not n:
             sys.exit("FAIL: target string absent")
         open(path, "wb").write(bytes(b).replace(TARGET, REPL))
@@ -73,80 +103,59 @@ def main():
     print("hermes version:", u32(b, 8))
     sc = u32(b, 52)
     oc = u32(b, 56)
-    print("stringCount:", sc, "overflowCount:", oc)
+    sss = u32(b, 60)
+    print("stringCount:", sc, "overflowCount:", oc, "storageSize:", sss)
+    if not (0 < sc < 2000000) or oc > 100000 or sss > len(b):
+        sys.exit("FAIL: header offsets do not look sane")
 
-    occ = []
-    i = b.find(TARGET)
-    while i != -1:
-        occ.append(i)
-        i = b.find(TARGET, i + 1)
-    print("occurrences:", len(occ))
-
-    if not occ:
-        if b.count(REPL):
-            print("PASS already patched")
-            return
-        sys.exit("FAIL: target string absent from bundle")
-
-    P = S = T = E = None
-    for cand in occ:
-        if b[cand - 1] != len(TARGET):
-            print("  skip", cand, "(no uleb length prefix)")
-            continue
-        for e in range(128, len(b) - 8, 4):
-            if u32(b, e + 4) != len(TARGET):
-                continue
-            off = u32(b, e)
-            s = cand - off
-            if s < 0 or s > cand:
-                continue
-            for pad in range(0, 9):
-                t = s - oc * 16 - sc * 8 - pad
-                if t < 128 or not (t <= e < t + sc * 8):
-                    continue
-                stride = max(1, sc // 400)
-                entries = [(u32(b, t + 8 * k), u32(b, t + 8 * k + 4))
-                           for k in range(0, sc, stride)]
-                ok, tot = score(b, s, entries)
-                if tot and ok >= tot * 0.95:
-                    P, S, T, E = cand, s, t, e
-                    break
-            if P:
-                break
-        if P:
-            break
-
-    if P is None:
+    found = locate(b, sc, oc)
+    if not found:
         sys.exit("FAIL: could not locate the string table entry")
+    P, S, T, E, p = found
+    off = P - S - p
+    print("entry @%d off=%d prefix=%d storage=%d table=%d" % (E, off, p, S, T))
 
-    off = P - S
-    print("entry @%d off=%d storage=%d table=%d" % (E, off, S, T))
+    L = u32(b, E + 4)
+    lenbyte = uleb(len(REPL)) if p == 1 else (struct.pack("<I", len(REPL)) if p == 4 else b"")
+    print("entry length:", L)
 
-    flag = b[P + len(TARGET)]
-    start = P - 1
-    end = P + len(TARGET) + 1
-    b[start:end] = uleb(len(REPL)) + REPL + bytes([flag])
+    def fixup():
+        for k in range(sc):
+            e = T + 8 * k
+            o = u32(b, e)
+            if o > off:
+                struct.pack_into("<I", b, e, o - DELTA)
+        for k in range(oc):
+            e = T + sc * 8 + 16 * k
+            o = u64(b, e)
+            if o > off:
+                struct.pack_into("<Q", b, e, o - DELTA)
+        struct.pack_into("<I", b, 60, u32(b, 60) - DELTA)
+        d = u32(b, 104)
+        if d > P:
+            struct.pack_into("<I", b, 104, d - DELTA)
+        struct.pack_into("<I", b, 32, len(b))
 
-    for k in range(sc):
-        e = T + 8 * k
-        o = u32(b, e)
-        if o > off:
-            struct.pack_into("<I", b, e, o - DELTA)
-    for k in range(oc):
-        e = T + sc * 8 + 16 * k
-        o = u64(b, e)
-        if o > off:
-            struct.pack_into("<Q", b, e, o - DELTA)
-    struct.pack_into("<I", b, 60, u32(b, 60) - DELTA)
-    d = u32(b, 104)
-    if d > P:
-        struct.pack_into("<I", b, 104, d - DELTA)
-    struct.pack_into("<I", b, 32, len(b))
+    if L == len(REPL) and b[P + len(REPL)] in (0, 1):
+        print("state: already correct")
+    elif L == len(TARGET) and b[P + len(REPL)] in (0, 1):
+        # naive replace already shrank the file; only the length byte and the
+        # offset table are stale. No bytes to delete.
+        print("state: naive replace, repairing table")
+        b[P - p:P] = lenbyte
+        struct.pack_into("<I", b, E + 4, len(REPL))
+        fixup()
+    else:
+        flag = b[P + len(TARGET)]
+        print("state: pristine, rewriting entry")
+        b[P - p:P + len(TARGET) + 1] = lenbyte + REPL + bytes([flag])
+        struct.pack_into("<I", b, E + 4, len(REPL))
+        fixup()
 
     if b.count(TARGET):
         sys.exit("FAIL: target still present")
     q = b.find(REPL)
-    if q == -1 or read_uleb(b, q - 1) != len(REPL):
+    if q == -1 or read_uleb(b, q - p) != len(REPL):
         sys.exit("FAIL: replacement not readable")
     if u32(b, 32) != len(b):
         sys.exit("FAIL: fileLength mismatch")
@@ -159,6 +168,6 @@ def main():
         sys.exit("FAIL: table corrupted")
 
     open(path, "wb").write(bytes(b))
-    print("PASS hermes patch, new size:", len(b))
+    print("PASS, new size:", len(b))
 
 main()
